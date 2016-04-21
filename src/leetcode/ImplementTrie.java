@@ -51,6 +51,7 @@ public class ImplementTrie {
 			char c = str.charAt(i);
 			if (children.containsKey(c)){
 				t = children.get(i);
+				System.out.print(children.entrySet());
 				children = t.children;
 			}else {
 				return null; // trie not contains this string
@@ -96,10 +97,9 @@ public class ImplementTrie {
 		nodeO.isLeaf = true;
 		nodeN.isLeaf = true;
 		nodeA.isLeaf = true;
+		insert("here", root);
+		System.out.print(search("a", root));
 		outputTrie(root, " ");
-		ImplementTrie it = new ImplementTrie();
-		
-	
 
 	}
 

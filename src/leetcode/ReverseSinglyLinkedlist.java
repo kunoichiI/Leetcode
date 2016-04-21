@@ -36,8 +36,13 @@ public class ReverseSinglyLinkedlist {
 
 		ListNode result = reverseList(n1);
 		while(result != null) {
-			System.out.print(result.val);
+			if (result.equals(n1)) {
+				System.out.print(result.val + "->NULL");
+				result = null;
+			}else {
+			System.out.print(result.val + "->");
 			result = result.next;
+			}
 		}
 	}
 
