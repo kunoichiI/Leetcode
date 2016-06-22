@@ -45,7 +45,7 @@ package leetcode;
 
 public class Equi {
 	public static int solution(int A[], int N) {
-		// calculate sum by each index(all start from index 0)
+		// calculate sum 
 		if (N == 0) return -1;
 		long sum = 0;
 		for (int i = 0; i < N; i++) {
