@@ -3,12 +3,6 @@ package leetcode;
 import java.util.PriorityQueue;
 import java.util.Comparator;
 
-//class ListNode {
-//	int val;
-//	ListNode next;
-//	ListNode(int x) {val = x;}
-//}
-
 public class MergeKSortedLists {
 	
 	public ListNode mergeKLists(ListNode[] lists) {
