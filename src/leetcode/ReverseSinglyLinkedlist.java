@@ -2,7 +2,6 @@ package leetcode;
 
 public class ReverseSinglyLinkedlist {
 	
-	
 	public static ListNode reverseList(ListNode head) {
 		if (head == null || head.next == null) return head;
 		ListNode second = head.next;
