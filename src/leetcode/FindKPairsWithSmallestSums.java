@@ -10,7 +10,6 @@ public class FindKPairsWithSmallestSums {
 	    public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
 	        List<int[]> res = new ArrayList<int[]>();  
 	        if (nums1.length == 0 || nums2.length == 0 || k == 0) return res;
-	        int amount = Math.min(k, nums1.length*nums2.length);
 	        
 	        
 	        class Sort implements Comparator<int[]> {
