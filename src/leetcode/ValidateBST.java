@@ -41,20 +41,19 @@ public class ValidateBST {
 
 // Method 2: In-order Traversal and to see if values are in ascending order
 //public class Solution {
-//	TreeNode root;
-//	TreeNode prev = null;
-//	public boolean isBST(TreeNode node) {
-//		// traverse the tree in in-order fashion and track prevous node
-//		if (node != null) {
-//			if (!isBST(node.left)) {
-//				return false;
-//			}
-//			if (prev != null && node.val <= prev.val) {
-//				return false;
-//			}
-//			prev = node;
-//			return isBST(node.right);
-//		}
-//		return true;
-//	}
+//    TreeNode prev = null;
+//    public boolean isValidBST(TreeNode root) {
+//        if (root != null) {
+//            if (!isValidBST(root.left)) {
+//                return false;
+//            }
+//            if (prev!= null && prev.val >= root.val) {
+//                return false;
+//            }
+//            prev = root;
+//            return isValidBST(root.right);
+//        }
+//        return true;
+//        
+//    }
 //}
