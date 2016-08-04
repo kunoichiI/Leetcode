@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.HashMap;
+
 //13. Roman to Integer  
 //Difficulty: Easy
 //Given a roman numeral, convert it to an integer.
