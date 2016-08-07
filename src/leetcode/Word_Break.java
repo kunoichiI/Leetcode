@@ -30,7 +30,7 @@ public class Word_Break {
                 }
             }
         }
-        return pos[s.length()]!= -1;  // check if string is broken into all words in wordDict
+        return pos[s.length()]!= -1;  // check Sif string is broken into all words in wordDict
         
     }
 }
