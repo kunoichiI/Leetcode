@@ -2,28 +2,33 @@ package leetcode;
 
 import java.util.HashMap;
 
-
+class Node {  //TrieNode
+	char c; 
+	HashMap<Character, Node> children = new HashMap<Character, Node>();
+	boolean isLeaf;
+	
+	public Node() {}
+	
+	public Node(char c) {
+		this.c = c;
+	}
+}
 
 	
 public class ImplementTrie {
-//	public class Trie {
-//		private TrieNode root;
-//		public Trie() {
-//			root = new TrieNode();
-//		}
-//	}
+	
 	
 	// Insert a word into the trie
-	public static void insert(String word, TrieNode root) {
-		HashMap<Character, TrieNode> children = root.children;
+	public static void insert(String word, Node root) {
+		HashMap<Character, Node> children = root.children;
 		
 		for (int i = 0; i < word.length(); i++) {
 			char c = word.charAt(i);
-			TrieNode t;
+			Node t;
 			if (children.containsKey(c)) {
 				t = children.get(c);
 			}else {
-				t = new TrieNode();
+				t = new Node();
 				children.put(c, t);
 			}
 			children = t.children;
@@ -35,8 +40,8 @@ public class ImplementTrie {
 	}
 	
 	// search if the given word is in the trie
-	public static boolean search(String word, TrieNode root) {
-		TrieNode t = searchNode(word, root);
+	public static boolean search(String word, Node root) {
+		Node t = searchNode(word, root);
 		if (t != null && t.isLeaf) {
 			return true;
 		}else {
@@ -44,9 +49,9 @@ public class ImplementTrie {
 		}
 	}
 	
-	public static TrieNode searchNode(String str, TrieNode root) {
-		HashMap<Character, TrieNode> children = root.children;
-		TrieNode t = null;
+	public static Node searchNode(String str, Node root) {
+		HashMap<Character, Node> children = root.children;
+		Node t = null;
 		for (int i = 0; i < str.length(); i++) {
 			char c = str.charAt(i);
 			if (children.containsKey(c)){
@@ -61,7 +66,7 @@ public class ImplementTrie {
 	}
 	
 	// if there is any word in the trie starts with given prefix
-	public static boolean startWith(String prefix, TrieNode root) {
+	public static boolean startWith(String prefix, Node root) {
 		if (searchNode(prefix, root) == null) {
 			return false;
 		}else {
@@ -69,8 +74,8 @@ public class ImplementTrie {
 		}
 	}
 	
-	public static void outputTrie(TrieNode root, String path) {
-		TrieNode t = root;
+	public static void outputTrie(Node root, String path) {
+		Node t = root;
 		if (t.isLeaf == false) {
 			for (Character c: t.children.keySet()) {
 				String childPath = path + "->" + c;
@@ -82,16 +87,16 @@ public class ImplementTrie {
 	}
 	public static void main(String[] args) {
 		// create a trie here
-		TrieNode root  = new TrieNode();
-		TrieNode nodeT = new TrieNode('t');
-		TrieNode nodeA = new TrieNode('a');
-		TrieNode nodeI = new TrieNode('i');
+		Node root  = new Node();
+		Node nodeT = new Node('t');
+		Node nodeA = new Node('a');
+		Node nodeI = new Node('i');
 		root.children.put('t',nodeT);
 		root.children.put('a',nodeA);
 		root.children.put('i', nodeI);
 		
-		TrieNode nodeO = new TrieNode('o');
-		TrieNode nodeN = new TrieNode('n');
+		Node nodeO = new Node('o');
+		Node nodeN = new Node('n');
 		nodeT.children.put('o', nodeO);
 		nodeI.children.put('n',nodeN);
 		nodeO.isLeaf = true;

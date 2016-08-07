@@ -32,8 +32,8 @@ public class LRUCache {
     
     public void removeNode(DoubleLinkedListNode node) {
         DoubleLinkedListNode cur = node;
-        DoubleLinkedListNode pre = node.prev;
-        DoubleLinkedListNode nex = node.next;
+        DoubleLinkedListNode pre = cur.prev;
+        DoubleLinkedListNode nex = cur.next;
         
         if (pre != null) {
             pre.next = nex;
