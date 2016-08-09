@@ -1,7 +1,6 @@
 package leetcode;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 //给一个二维数组，对角线打印
@@ -62,12 +61,3 @@ public class Print2DArray {
 }
 
 
-
-class Point {
-	int row;
-	int col;
-	public Point(int i, int j) {
-		this.row = i;
-		this.col = j;
-	}
-}
