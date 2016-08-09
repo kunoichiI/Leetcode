@@ -48,7 +48,9 @@ public class ShortestDistanceFromAllBuildings {
 							for (int[] dir : directions) {
 								int xnew = x + dir[0];
 								int ynew = y + dir[1];
+								
 								if (xnew >= 0 && xnew < m && ynew >=0 && ynew < n && !visited[xnew][ynew] && grid[xnew][ynew] == 0) {
+									System.out.println("Point:" + "[" + xnew + "," + ynew + "]");
 									queue.offer(xnew * n + ynew);
 									visited[xnew][ynew] = true;
 									dist[xnew][ynew] += level + 1;
@@ -72,4 +74,15 @@ public class ShortestDistanceFromAllBuildings {
 		}
 		return min_dist == Integer.MAX_VALUE? -1:min_dist;
 	}
+	
+	public static void main(String[] args) {
+		int[][] grid = {
+							{1, 0, 2, 0, 1},
+							{0, 0, 0, 0, 0},
+							{0, 0, 1, 0, 0}
+						};
+		ShortestDistanceFromAllBuildings sd = new ShortestDistanceFromAllBuildings();
+		System.out.print(sd.shortestDistance(grid));
+		}
 }
+
