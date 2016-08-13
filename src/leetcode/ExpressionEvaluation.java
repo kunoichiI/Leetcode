@@ -65,9 +65,9 @@ public class ExpressionEvaluation {
 		// Entire expression has been parsed at this time, apply remaining ops to remain values;
 		//int val = 0;
 		while(!ops.isEmpty()) {
-			if (!values.isEmpty()) {
+			//if (!values.isEmpty()) {
 			values.push(applyOp(ops.pop(), values.pop(), values.pop()));
-			}
+			//}
 		}
 		
 		// Top of 'values' contains result, return it
