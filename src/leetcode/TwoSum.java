@@ -14,6 +14,7 @@ import java.util.HashMap;
 //return [0, 1].
 
 public class TwoSum {
+	
 	public int[] twoSum(int[] nums, int target) {
         int[] arr = new int[2];
         HashMap<Integer, Integer> map = new HashMap<>(); // Store nums element and index as key and value pair.
