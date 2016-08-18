@@ -21,18 +21,20 @@ public class ThreeSumClosest {
 		for (int i = 0; i < nums.length - 2; i++) {
 			int lo = i + 1;
 			int hi = nums.length - 1;
-			int sum = nums[i] + nums[lo] + nums[hi];
-			if (Math.abs(target - sum) < min) {
-				min = Math.abs(target - sum);
-				val = sum;
-			}
+			while (lo < hi) {
+				int sum = nums[i] + nums[lo] + nums[hi];
+				if (Math.abs(target - sum) < min) {
+					min = Math.abs(target - sum);
+					val = sum;
+				}
 			
-			if (target == sum) {
-				return val;
-			}else if (target > sum) {
-				lo++;
-			}else {
-				hi--;
+				if (target == sum) {
+					return val;
+				}else if (target > sum) {
+					lo++;
+				}else {
+					hi--;
+				}
 			}
 		}
 		return val;
