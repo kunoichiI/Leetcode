@@ -19,7 +19,7 @@ public class K_Sum {
      * @return an integer
      */
 	
-	// f[i][j][t] 代表从i个数里面挑选出j个数，想加的和等于target
+	// f[i][j][t] 代表从i个数里面挑选出j个数，想加的和等于target t
 	public int  kSum(int A[], int k, int target) {
         int n = A.length;
         int[][][] f = new int[n + 1][k + 1][target + 1];
