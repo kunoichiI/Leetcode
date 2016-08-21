@@ -64,30 +64,30 @@ public class Word_Search_II {
 	}
 }
 
-class TrieNode {
+class TriNode {
     public char c;
-    public HashMap<Character, TrieNode> children;
+    public HashMap<Character, TriNode> children;
     public boolean isLeaf;
     
-    public TrieNode() {
-        children = new HashMap<Character, TrieNode>();
+    public TriNode() {
+        children = new HashMap<Character, TriNode>();
     }
 }
 
 class Trie {
-    private TrieNode root;
+    private TriNode root;
     public Trie() {
-        root = new TrieNode();
+        root = new TriNode();
     }
     
     public void insert(String word) {
-        HashMap<Character, TrieNode> children = root.children;
+        HashMap<Character, TriNode> children = root.children;
         
         for (int i = 0; i < word.length(); i++) {
-            TrieNode t;
+            TriNode t;
             char c = word.charAt(i);
             if (!children.containsKey(c)) {
-                t = new TrieNode();
+                t = new TriNode();
                 children.put(c, t);
             }else {
                 t = children.get(c);
@@ -99,16 +99,16 @@ class Trie {
     }
     
     public boolean search(String word) {
-        TrieNode t = searchNode(word);
+        TriNode t = searchNode(word);
         if (t != null && t.isLeaf)
             return true;
         else
             return false;
     }
     
-    public TrieNode searchNode(String str) {
-        HashMap<Character, TrieNode> children = root.children;
-        TrieNode t = null;
+    public TriNode searchNode(String str) {
+        HashMap<Character, TriNode> children = root.children;
+        TriNode t = null;
         
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
