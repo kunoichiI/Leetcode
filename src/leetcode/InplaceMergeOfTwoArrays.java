@@ -38,12 +38,12 @@ public class InplaceMergeOfTwoArrays {
 			if  ( (j == n) ||(i < (m+n) && mPlusN[i] <= N[j] )) {// take a value from mPlusN and if value is smaller and we have not reached the 
 				// end of N[] or we have reached the end of N[]
 				mPlusN[k] = mPlusN[i];
-				System.out.println("i:" + i);
+				//System.out.println("i:" + i);
 				k++;
 				i++;
 			}else { // otherwise take value from N[]
 				mPlusN[k] = N[j];
-				System.out.println("j:" + j);
+				//System.out.println("j:" + j);
 				k++;
 				j++;
 			}
