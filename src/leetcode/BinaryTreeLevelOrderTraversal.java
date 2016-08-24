@@ -5,10 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-//102. Binary Tree Level Order Traversal  QuestionEditorial Solution  My Submissions
-//Total Accepted: 114627
-//Total Submissions: 336517
-//Difficulty: Easy
+//102. Binary Tree Level Order Traversal  
 //Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 //
 //For example:
