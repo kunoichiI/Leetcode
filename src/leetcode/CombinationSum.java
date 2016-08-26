@@ -33,7 +33,7 @@ public class CombinationSum {
             return;
         }
         if (target == 0) {
-            res.add(new ArrayList(item));
+            res.add(new ArrayList<Integer>(item));
             return;
         }
         
@@ -46,5 +46,18 @@ public class CombinationSum {
             helper(candidates, newtarget, res, item, i); // starting at i because same element can be reused unlimited times
             item.remove(item.size()-1);
         }
+    }
+    
+    public static void main(String[] args) {
+    	int[] candidates = {2, 3 , 6, 7};
+    	int target = 7;
+    	CombinationSum cs = new CombinationSum();
+    	List<List<Integer>> res = cs.combinationSum(candidates, target);
+    	System.out.print("[");
+    	System.out.println();
+    	for (List<Integer> list: res) {
+    		System.out.println(list.toString());
+    	}
+    	System.out.println("]");
     }
 }
