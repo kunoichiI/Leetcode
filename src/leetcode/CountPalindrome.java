@@ -22,7 +22,7 @@ public class CountPalindrome {
 	      }
 	  }
 	public static void main(String[] args) {
-		String s = "hellolle";
+		String s = "wowpurerocks";
 		CountPalindrome cp = new CountPalindrome();
 		List<String> res = cp.palindromes(s);
 		for (String r: res) {
