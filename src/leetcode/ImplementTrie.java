@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 class Node {  //TrieNode
 	char c; 
-	HashMap<Character, Node> children = new HashMap<Character, Node>();
+	HashMap<Character, Node> children = new HashMap<>();
 	boolean isLeaf;
 	
 	public Node() {}
@@ -55,8 +55,8 @@ public class ImplementTrie {
 		for (int i = 0; i < str.length(); i++) {
 			char c = str.charAt(i);
 			if (children.containsKey(c)){
-				t = children.get(i);
-				System.out.print(children.entrySet());
+				t = children.get(c);
+				//System.out.print(children.entrySet());
 				children = t.children;
 			}else {
 				return null; // trie not contains this string
@@ -103,9 +103,8 @@ public class ImplementTrie {
 		nodeN.isLeaf = true;
 		nodeA.isLeaf = true;
 		insert("here", root);
-		System.out.print(search("a", root));
 		outputTrie(root, " ");
-
+		System.out.print(startWith("he", root));
 	}
 
 }
