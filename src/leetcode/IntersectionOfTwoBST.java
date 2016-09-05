@@ -12,7 +12,6 @@ package leetcode;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Stack;
 //             5 (root1)
 //         /      \
 //        1       10
