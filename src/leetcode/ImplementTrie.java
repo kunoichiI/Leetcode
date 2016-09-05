@@ -1,5 +1,7 @@
 package leetcode;
 
+// Leetcode 208
+// See improved version of implementing trie -- to word_search_II.java
 import java.util.HashMap;
 
 class Node {  //TrieNode
@@ -57,6 +59,7 @@ public class ImplementTrie {
 			if (children.containsKey(c)){
 				t = children.get(c);
 				//System.out.print(children.entrySet());
+				
 				children = t.children;
 			}else {
 				return null; // trie not contains this string
