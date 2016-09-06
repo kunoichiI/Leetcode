@@ -33,7 +33,7 @@ public class MultiplyStrings {
 	
 	public static void main(String[] args) {
 		MultiplyStrings ms = new MultiplyStrings();
-		String num1 = "123", num2 = "456";
+		String num1 = "0", num2 = "456";
 		System.out.print(ms.multiply(num1, num2));
 
 	}

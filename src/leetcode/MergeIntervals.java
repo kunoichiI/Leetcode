@@ -2,7 +2,6 @@ package leetcode;
 
 import java.util.*;
 //56. Merge Intervals 
-//Difficulty: Hard
 //Given a collection of intervals, merge all overlapping intervals.
 //
 //For example,
@@ -27,18 +26,18 @@ public class MergeIntervals {
         Collections.sort(intervals, new IntervalComparator());       
   
         ArrayList<Interval> result = new ArrayList<Interval>();
-        Interval last = intervals.get(0);
+        Interval prev = intervals.get(0);
         for (int i = 1; i < intervals.size(); i++) {
             Interval curt = intervals.get(i);
-            if (curt.start <= last.end ){
-                last.end = Math.max(last.end, curt.end);
+            if (curt.start <= prev.end ){
+                prev.end = Math.max(prev.end, curt.end);
             }else{
-                result.add(last);
-                last = curt;
+                result.add(prev);
+                prev = curt;
             }
         }
         
-        result.add(last);
+        result.add(prev);
         return result;
     }
     

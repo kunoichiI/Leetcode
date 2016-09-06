@@ -1,75 +1,61 @@
 package leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NQueens {
-	public static List<List<String>> solveNQueens(int n) {
-		List<List<String>> res = new ArrayList<List<String>>();
-		if (n < 0) {
-			return res;
-		}
-		
-		int[] columnVal = new int[n];
-		DFS_helper(n, res, 0, columnVal);
+	List<List<String>> res;
+	public List<List<String>> solveNQueens(int n) {
+		res = new ArrayList<>();
+		int[] nqueens = new int[n];
+		helper(nqueens, n, 0);
 		return res;
 	}
 	
-	private static void DFS_helper(int nQueens, List<List<String>> res, int row,
-			int[] columnVal) {
-		if (row == nQueens) { // N queens have been put to board
-			ArrayList<String> unit = new ArrayList<String>();
-			for (int i = 0; i < nQueens; i++) {
-				StringBuilder s = new StringBuilder();
-				for (int j = 0; j < nQueens; j++) {
-					if (j == columnVal[i]) {
-						s.append("Q");   // if the column val of row i equals to its column, then Queen is placed there:)
-					}else {
-						s.append(".");
-					}
+	public void helper(int[] nqueens, int n, int index) {
+		if (index == nqueens.length) {
+			List<String> line = new ArrayList<>();
+			for (int num: nqueens) {
+				StringBuilder sb = new StringBuilder();
+				for (int j = 0; j < num; j++) {
+					sb.append('.');
 				}
-				unit.add(s.toString());  // after finishing one line, put into an ArrayList
+				sb.append('Q');
+				for (int j = num + 1; j < n; j++) {
+					sb.append('.');
+				}
+				line.add(sb.toString());
 			}
-			res.add(unit);   // collect all lines for this solution
-		}else {  // Still in the process of placing queens
-			for (int i = 0; i < nQueens; i++) {
-				columnVal[row] = i; // (row, columnVal[row]) ==> (row, i)
-				
-				if (isValid(row, columnVal)) {
-					DFS_helper(nQueens, res, row + 1, columnVal);
+			res.add(line);
+		}else { // choose next line
+			for (int k = 0; k < n; k++) {
+				nqueens[index] = k;
+				if (isValid(nqueens, index)){
+					helper(nqueens, n, index+1);
 				}
 			}
 			
 		}
-		
 	}
-
-	private static boolean isValid(int row, int[] columnVal) {
-		for (int i = 0; i < row; i++) {
-			if (columnVal[row] == columnVal[i] || Math.abs(columnVal[row] - columnVal[i]) == row -i) {
-				return false;
-			}
+	
+	public boolean isValid(int[] nqueens, int i) {
+		for(int idx = 0; idx < i; idx++){
+            // 检查对角线只要判断他们差的绝对值和坐标的差是否相等就行了
+            if(nqueens[idx] == nqueens[i] || Math.abs(nqueens[idx] - nqueens[i]) ==  i - idx){
+                return false;
+            }
 		}
 		return true;
 	}
 
 	public static void main(String[] args) {
-		int nQueens = Integer.parseInt(args[0]);
-		List<List<String>> res = solveNQueens(nQueens);
-		System.out.println("[");
-		for (List<String> solution : res) {
-			System.out.print("[");
-			for (int i = 0; i < solution.size(); i++) {
-				if (i < solution.size() - 1) {
-					System.out.println(solution.get(i) + ",");
-				}
-				System.out.println(solution.get(i));
-				
-			}
-			System.out.print("]" + ",");
-			System.out.println();
+		NQueens nq = new NQueens();
+		List<List<String>> res = nq.solveNQueens(8);
+		
+		for (List<String> l : res) {
+			System.out.println(Arrays.asList(l));
 		}
-		System.out.print("]");
 	}
 
 }
