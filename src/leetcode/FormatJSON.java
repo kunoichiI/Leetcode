@@ -15,11 +15,10 @@ public class FormatJSON {
 			char c = str.charAt(i);
 			
 			// Are we inside a quoted string?
-//			if (c == '"' && prevChar != '\\' ) {
-//				outOfQuotes = !outOfQuotes;
-//				// if this character is the end of an element, output a new line and indent the next line.
-//			}else 
-			if (c == ']' || c == '}' && outOfQuotes) {
+			if (c == '"' && prevChar == '\\' ) {
+				outOfQuotes = !outOfQuotes;
+				// if this character is the end of an element, output a new line and indent the next line.
+			}else if (c == ']' || c == '}' && outOfQuotes) {
 				res += newLine;
 				pos--;
 				for (int j = 0; j < pos; j++) {

@@ -47,25 +47,26 @@ public class MaximumSubarray {
     }
 	public static void main(String[] args) {
 		MaximumSubarray ms = new MaximumSubarray();
-		int[] nums = {-2, 1, -3, 4, -1,2, 1, -5, 4};
+		int[] nums = {-2, -3, 4, -1, -2, 1, 5, -3};
 		System.out.print(ms.maxSubArray(nums));
 
 	}
 
 }
 
-// Solution 2: Kadane algorithm(1977)
+// Solution 2: Kadane algorithm(1977) improved version(only compare max_so_far & max_end_here while max_so_far is less than max_end_here
 //public class Solution {
 //    public int maxSubArray(int[] nums) {
-//        int max_end_here = 0, max_so_far = Integer.MIN_VALUE;
+//        int max_end_here = 0, max_so_far = 0;
 //        
 //        for (int i = 0; i < nums.length; i++) {
-//            if (max_end_here < 0) max_end_here = 0;
-//            max_end_here += nums[i];
+//				max_end_here += nums[i];
+//            	if (max_end_here < 0) max_end_here = 0;
 //            
-//            max_so_far = Math.max(max_end_here, max_so_far);
+//            
+//            if (max_so_far < max_end_here) max_so_far = max_end_here;
 //        }
 //        return max_so_far;
 //    }
-//    
-//}
+    
+}
