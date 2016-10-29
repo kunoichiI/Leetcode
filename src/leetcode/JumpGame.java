@@ -1,3 +1,4 @@
+package leetcode;
 // 55. Jump game
 // Given an array of non-negative integers, you are initially positioned at the first index of the array.
 //
@@ -11,7 +12,7 @@
 // A = [3,2,1,0,4], return false.
 
 
-public class Solution {
+public class JumpGame {
     public boolean canJump(int[] nums) {
         int size = nums.length;
         if (size <= 1) return true;

@@ -6,7 +6,6 @@ public class FormatJSON {
 		int pos = 0;
 		int len = str.length();
 		String indentStr = "    ";
-		char prevChar = 0;
 		String newLine = "\n";
 		boolean outOfQuotes = true;
 		
@@ -14,11 +13,8 @@ public class FormatJSON {
 			// Grab the next character in the string
 			char c = str.charAt(i);
 			
-			// Are we inside a quoted string?
-			if (c == '"' && prevChar == '\\' ) {
-				outOfQuotes = !outOfQuotes;
-				// if this character is the end of an element, output a new line and indent the next line.
-			}else if (c == ']' || c == '}' && outOfQuotes) {
+			
+			if (c == ']' || c == '}' && outOfQuotes) {
 				res += newLine;
 				pos--;
 				for (int j = 0; j < pos; j++) {
@@ -40,7 +36,6 @@ public class FormatJSON {
 					res += indentStr;
 				}
 			}
-			prevChar = c;
 		}
 		return res;
 	}

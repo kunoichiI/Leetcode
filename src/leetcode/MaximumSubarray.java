@@ -47,7 +47,7 @@ public class MaximumSubarray {
     }
 	public static void main(String[] args) {
 		MaximumSubarray ms = new MaximumSubarray();
-		int[] nums = {-2, -3, 4, -1, -2, 1, 5, -3};
+		int[] nums = {-2, -3, -1, -2, -1, -5, -3};
 		System.out.print(ms.maxSubArray(nums));
 
 	}
@@ -69,4 +69,4 @@ public class MaximumSubarray {
 //        return max_so_far;
 //    }
     
-}
+//}
