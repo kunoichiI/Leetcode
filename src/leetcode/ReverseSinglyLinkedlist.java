@@ -2,16 +2,34 @@
 package leetcode;
 
 public class ReverseSinglyLinkedlist {
+	// Recursion solution : will cause large stack call because of recursive function
+//	public static ListNode reverseList(ListNode head) {
+//		if (head == null || head.next == null) return head;
+//		ListNode second = head.next;
+//		head.next = null;
+//		ListNode reverseRest = reverseList(second);
+//		second.next = head;
+//		return reverseRest;
+//	}
+	
+	
+	// Iterative solution : use one pointer, saves stack call
+	// Iterate trough the linked list. In loop, change next to prev, prev to current and current to next.
 	
 	public static ListNode reverseList(ListNode head) {
-		if (head == null || head.next == null) return head;
-		ListNode second = head.next;
-		head.next = null;
-		ListNode reverseRest = reverseList(second);
-		second.next = head;
-		return reverseRest;
+		ListNode prev = null;
+		ListNode curr = head;
+		ListNode next = null;
+		
+		while (curr != null) {
+			next = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = next;
+		}
+		head = prev;
+		return head;
 	}
-	
 	
 	public static void main(String[] args) {
 		ListNode n1 = new ListNode(2);
