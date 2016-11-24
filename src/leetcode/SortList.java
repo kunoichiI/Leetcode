@@ -16,7 +16,7 @@ public class SortList {
         slow.next = null;
         
         ListNode leftlist = null, rightlist =null;
-        if(firsthalf!=secondhalf){
+        if(firsthalf != secondhalf){
             leftlist = sortList(firsthalf);
             rightlist = sortList(secondhalf);
         }

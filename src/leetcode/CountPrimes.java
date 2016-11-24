@@ -1,9 +1,7 @@
 package leetcode;
 
-//204. Count Primes 
-//Description:
-//
-//Count the number of prime numbers less than a non-negative number, n.
+// 204. Count Primes 
+// Count the number of prime numbers less than a non-negative number, n.
 // The Sieve of Eratosthenes uses an extra O(n) memory and its runtime complexity is O(n log log n).
 
 public class CountPrimes {

@@ -30,9 +30,6 @@ public class AllTopologicalSort {
 		boolean[] visited = new boolean[v];
 		LinkedList<Integer> res = new LinkedList<>();
 		int i = 0;
-		for (i = 0; i < v; i++) {
-			visited[i] = false;
-		}
 		allTopoSortHelper(visited, res);
 	}
 	public void allTopoSortHelper(boolean[] visited, LinkedList<Integer> res) {
@@ -43,7 +40,7 @@ public class AllTopologicalSort {
 			if (indegree[i] == 0 && !visited[i]) {
 				visited[i] = true;
 				// remove this edge
-				Iterator<Integer> it = adj[i].listIterator();
+				Iterator<Integer> it = adj[i].iterator();
 				while(it.hasNext()) {
 					j = it.next();
 					indegree[j]--;
@@ -51,7 +48,7 @@ public class AllTopologicalSort {
 				res.add(i);
 				allTopoSortHelper(visited, res);
 				visited[i] = false;
-				it = adj[i].listIterator();
+				it = adj[i].iterator();
 				res.removeLast();
 				while(it.hasNext()) {
 					j = it.next();

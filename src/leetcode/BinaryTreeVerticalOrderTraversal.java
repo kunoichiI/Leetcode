@@ -46,7 +46,7 @@ import java.util.*;
 
 public class BinaryTreeVerticalOrderTraversal {
 	private class TreeColumnNode {
-		public TreeNode treeNode;
+		TreeNode treeNode;
 		int col;
 		
 		public TreeColumnNode(TreeNode node, int col) {

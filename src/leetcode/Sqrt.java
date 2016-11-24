@@ -1,7 +1,6 @@
 package leetcode;
 
-//69. Sqrt(x)  
-//Difficulty: Medium
+//69. Sqrt(x)  Binary Search
 //Implement int sqrt(int x).
 //
 //Compute and return the square root of x.
