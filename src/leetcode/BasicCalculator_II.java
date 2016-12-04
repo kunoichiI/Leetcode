@@ -49,4 +49,9 @@ public class BasicCalculator_II {
         }
         return ans;
     }
+	public static void main(String[] args) {
+		BasicCalculator_II bc2 = new BasicCalculator_II();
+		int res = bc2.calculate(" 3+5 / 2 ");
+		System.out.println(res);
+	}
 }
