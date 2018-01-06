@@ -11,6 +11,9 @@ package leetcode;
 public class MaximumSubarray {
 
 	public int maxSubArray(int[] nums) {
+		if (nums == null || nums.length == 0) {
+			return 0;
+		}
         return divide(nums, 0, nums.length-1);
     }
     
@@ -48,25 +51,24 @@ public class MaximumSubarray {
 	public static void main(String[] args) {
 		MaximumSubarray ms = new MaximumSubarray();
 		int[] nums = {-2, -3, -1, -2, -1, -5, -3};
+		int[] array1 = { -2, -1, -4, -168 };
+		int[] array2 = { -2, -1, -4, 168 };
+		int[] array3 = { 2, 1, 4, 168 };
+		int[] array4 = {};
+		int[] array5 = { -2, -3, 4, -1, -2, 1, 5, -3 };
+		int[] array6 = null;
 		System.out.print(ms.maxSubArray(nums));
+		
+		System.out.println(ms.maxSubArray(array1)); // output 0, error! because Kadane algorithm doesn't take
+		// an array of all negative numbers
+		System.out.println(ms.maxSubArray(array2)); // output 168, correct!
+		System.out.println(ms.maxSubArray(array3)); // output 175, correct!
+		System.out.println(ms.maxSubArray(array4)); // output 0, correct!
+		System.out.println(ms.maxSubArray(array5)); // output 7, correct!
+		System.out.println(ms.maxSubArray(array6)); // output , correct!
 
 	}
 
 }
 
-// Solution 2: Kadane algorithm(1977) improved version(only compare max_so_far & max_end_here while max_so_far is less than max_end_here
-//public class Solution {
-//    public int maxSubArray(int[] nums) {
-//        int max_end_here = 0, max_so_far = 0;
-//        
-//        for (int i = 0; i < nums.length; i++) {
-//				max_end_here += nums[i];
-//            	if (max_end_here < 0) max_end_here = 0;
-//            
-//            
-//            if (max_so_far < max_end_here) max_so_far = max_end_here;
-//        }
-//        return max_so_far;
-//    }
-    
-//}
+
