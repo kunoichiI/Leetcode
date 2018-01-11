@@ -67,11 +67,22 @@ public class MinWindowSubstring {
 		}
 	}
 	
+	public static void printStringBuilder(StringBuilder sb) {
+		System.out.println(sb.toString());
+		System.out.println("The stringbuilder length is :" + sb.length());
+	}
+	
 	public static void main(String[] args) {
 		String source = "ADOBECODEBANC";
 		String target = "ABC";
 		System.out.print(minWindow(source, target));
-
+//		StringBuilder sb = new StringBuilder(16);
+//		sb.append(true);
+//		printStringBuilder(sb);
+//		
+//		sb.append(" ");
+//		sb.append(false);
+//		printStringBuilder(sb);		
 	}
 
 }
