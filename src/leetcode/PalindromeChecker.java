@@ -27,10 +27,12 @@ public class PalindromeChecker {
 		String s1 = "";
 		String s2 = "malayalam";
 		String s3 = "Toyota";
+		String s4 = "LmaoYoamL";
 		
 		System.out.println(isPalin(s1));
 		System.out.println(isPalin(s2));
 		System.out.println(isPalin(s3));
+		System.out.println(isPalin(s4));
 	}
 
 }
