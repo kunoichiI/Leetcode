@@ -1,7 +1,7 @@
 package leetcode;
 
 public class PalindromeChecker {
-
+	// two pointers + recursive solution
 	public static boolean isPalindrome(String str, int lo, int hi) {
 		// If there's only one character
 		if (lo == hi) return true;
