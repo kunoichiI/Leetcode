@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.Arrays;
+
 // 9. Palindrome Number
 // Determine whether an integer is a palindrome. Do this without extra space.
 public class PalindromeNumber {
@@ -26,6 +28,14 @@ public class PalindromeNumber {
 		System.out.println(isPalindrome(-9)); // false
 		System.out.println(isPalindrome(1331)); // true
 		System.out.println(isPalindrome(0)); // true
+		
+		int[][] arr = new int[2][2];
+		arr[0][0] = 99;
+		arr[0][1] = 100;
+		arr[1][0] = 1;
+		arr[1][1] = 2;
+		
+		System.out.println(Arrays.deepToString(arr)); // [[99,100], [1,2]]
 	}
 
 }
