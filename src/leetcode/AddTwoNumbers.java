@@ -10,35 +10,19 @@ package leetcode;
 
 public class AddTwoNumbers {
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if (l1 == null && l2 == null) return null;
+        if (l1 == null && l2 == null) return null; // This iterative solution gets TLE time running out..
         
         ListNode head = new ListNode(0);
         ListNode point = head;
         int carry = 0;
         while (l1 != null && l2 != null) {
-            int sum = carry + l1.val + l2.val;
+            int sum = carry + (l1 == null? 0: l1.val) + (l2 == null? 0 : l2.val);
             point.next = new ListNode(sum % 10);
             carry = sum / 10;
-            l1 = l1.next;
-            l2 = l2.next;
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
             point = point.next;
         }
-        
-        while (l1 != null) {
-            int sum = carry + l1.val;
-            point.next = new ListNode(sum % 10);
-            carry = sum / 10;
-            l1 = l1.next;
-            point = point.next;
-        }
-        while(l2 != null) {
-            int sum = carry + l2.val;
-            point.next = new ListNode(sum % 10);
-            carry = sum / 10;
-            l2 = l2.next;
-            point = point.next;
-        }
-        
         if (carry != 0) {
             point.next = new ListNode(carry);
         }

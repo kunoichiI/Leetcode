@@ -27,11 +27,7 @@ public class SymmetricTree {
         if (l == null && r == null) return true;
         else if (l == null || r == null) return false;
         
-        if (l.val != r.val) return false;
-        if (!isSymmetric(l.left, r.right)) return false;
-        if (!isSymmetric(l.right, r.left)) return false;
-        
-        return true;
+        return (l.val == r.val) && isSymmetric(l.left, r.right) && isSymmetric(l.right, r.left);
         
     }
 }
