@@ -16,6 +16,7 @@ package leetcode;
 
 public class LCAofBT {
 	public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		if (p == null || q == null) return null;
         if (root == null || root == p || root == q) {
             return root;
         }
@@ -34,11 +35,16 @@ public class LCAofBT {
 		root.left = new TreeNode(8);
 		root.left.left = new TreeNode(4);
 		root.left.right = new TreeNode(12);
-		TreeNode p = root.left.right.left = new TreeNode(10);
-		TreeNode q = root.left.right.right = new TreeNode(14);
+		TreeNode q = root.left.right;
+		TreeNode p = root.left.right.right = new TreeNode(14);
 		root.right = new TreeNode(22);
-		
-		TreeNode node = lowestCommonAncestor(root, p, q);
-		System.out.println(node.val);
+		TreeNode r = null;
+		TreeNode s = root.right;
+		TreeNode node = lowestCommonAncestor(root, p, q); // on the same left side
+		System.out.println(node.val); // => 12
+		TreeNode node1 = lowestCommonAncestor(root, q, r); // one of two nodes is null
+		System.out.println(node1); // => null
+		TreeNode node2 = lowestCommonAncestor(root, p, s); //  nodes on diff sides of tree
+		System.out.println(node2.val); // => return root.val 20
 	}
 }
