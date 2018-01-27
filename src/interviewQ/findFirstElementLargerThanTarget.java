@@ -7,29 +7,19 @@ public class findFirstElementLargerThanTarget {
 		if (arr == null)
 			return -1; // cannot find such element, 
 		// failed to consider edge case will cause runtime exception!!
-		// use an auxiliary array which length is arr.length+1 and contains only 0 and 1, 
-		// if arr[i] > target, array[i] = 1, else array[i] = 0
-		int[] array = new int[arr.length + 1];
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] > target)
-				array[i] = 1;
-			else 
-				array[i] = 0;
-		}
-		//Arrays.stream(array).forEach(System.out::println);
-		int lo = 0, hi = arr.length, tar = 1;
-		while (lo != hi) {
-			int mid = lo + (hi - lo) / 2;
-			if (array[mid] < tar) 
+		int lo = 0, hi = arr.length - 1;
+		while (lo <= hi) {
+			int mid = lo + (hi - lo) / 2; // avoid large int overflow, consider we use (lo + hi) / 2.. what if lo + hi is greater than int limit
+			if (arr[mid] <= target) {
 				lo = mid + 1;
-			else 
-				hi = mid;
+			} else {
+				hi = mid - 1;
+			}
 		}
-		// after the while loop lo will be equal to hi
-		if (lo > arr.length - 1)
-			return -1; // the original array doesn't have the value that just greater than target
-		else
-			return arr[lo];
+		if (hi + 1 <= arr.length - 1)
+			return arr[hi + 1];
+		else 
+			return -1; // cannot find this value
 	}
 	public static void main(String[] args) {
 		int[] arr = {2, 4, 5, 7, 8, 12, 16};
