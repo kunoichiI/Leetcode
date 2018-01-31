@@ -22,9 +22,9 @@ public class ShortestUniqueSubstring {
 		    for (int i = 0; i < arr.length; i++) {
 		      map.put(arr[i], 0);
 		    }
-		    for(Character key: map.keySet()) {
-	    	  		System.out.println("key: " + key + ", value: " + map.get(key));
-		    }
+//		    for(Character key: map.keySet()) {
+//	    	  		System.out.println("key: " + key + ", value: " + map.get(key));
+//		    }
 		    
 		    // scan str
 		    for (int tailIndex = 0; tailIndex < str.length(); tailIndex++) {
@@ -63,7 +63,7 @@ public class ShortestUniqueSubstring {
 		              counter--;
 		          map.put(headChar, headCount);
 		        }
-		        
+		        System.out.println("headIndex is  " + headIndex);
 		        headIndex++;
 		      }
 		      
