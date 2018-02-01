@@ -18,34 +18,60 @@ import java.util.*;
 //]
 
 public class BinaryTreeZigzagLevelOrderTraversal {
-	public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+	public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> result=new ArrayList<>(); 
         if(root==null) return result; 
-        Stack<TreeNode> stack=new Stack<TreeNode>();
-        stack.push(root);
-        boolean flag=false; 
-        while(!stack.isEmpty())
-        {
-            Stack<TreeNode> Tpstack=new Stack<TreeNode>();
-            List<Integer> list=new ArrayList<Integer>();
-            while(!stack.isEmpty())
-            {
-                TreeNode pop=stack.pop();
-                list.add(pop.val); 
-                if(!flag) 
-                {
-                    if(pop.left!=null) Tpstack.push(pop.left);
-                    if(pop.right!=null) Tpstack.push(pop.right);
-                }else
-                {
-                    if(pop.right!=null) Tpstack.push(pop.right);
-                    if(pop.left!=null) Tpstack.push(pop.left);
-                }
-            }
-            flag=!flag; 
-            result.add(list);
-            stack=Tpstack; 
+        Stack<TreeNode> s1 = new Stack<>();
+        Stack<TreeNode> s2 = new Stack<>();
+        
+        // push first level to first stack s1
+        s1.push(root);
+
+        while (!s1.isEmpty() || !s2.isEmpty()) {
+        		List<Integer> list = new ArrayList<>();
+        		while (!s1.isEmpty()) {
+        			TreeNode tmp = s1.pop();
+        			list.add(tmp.val);
+        			if (tmp.left != null) 
+        				s2.push(tmp.left);
+        			if (tmp.right != null) 
+        				s2.push(tmp.right);
+        		}
+        		result.add(list);
+        		list = new ArrayList<>();
+        		while(!s2.isEmpty()) {
+        			TreeNode tmp = s2.pop();
+        			list.add(tmp.val);
+        			if (tmp.right != null) 
+        				s1.push(tmp.right);
+        			if (tmp.left != null)
+        				s1.push(tmp.left);
+        		}
+        		if (list.size() != 0)
+        			result.add(list);	
         }
-        return result; 
+        return result;
     }
+	
+	public static void main(String[] args) {
+		// [3,9,20,null,null,15,7],
+		TreeNode root1 = new TreeNode(3);
+		root1.left = new TreeNode(9);
+		root1.right = new TreeNode(20);
+		root1.right.left = new TreeNode(15);
+		root1.right.right = new TreeNode(7);
+		
+		// [1,2,3,4,null,null,5]
+		TreeNode root2 = new TreeNode(1);
+		root2.left = new TreeNode(2);
+		root2.right = new TreeNode(3);
+		root2.left.left = new TreeNode(4);
+		root2.right.right = new TreeNode(5);
+		
+		List<List<Integer>> res = zigzagLevelOrder(root1);
+		res.stream().forEach(System.out::println); // => [[3], [20, 9], [15, 7]]
+		System.out.println("---------------------------");
+		List<List<Integer>> res1 = zigzagLevelOrder(root2); 
+		res1.stream().forEach(System.out::println); // => [[1], [3, 2], [4, 5]]
+	}
 }
