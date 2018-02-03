@@ -10,7 +10,7 @@ package leetcode;
 //Example 2:
 //Given the list [1,[4,[6]]], return 17. (one 1 at depth 3, one 4 at depth 2, and one 6 at depth 1; 1*3 + 4*2 + 6*1 = 17)
 public class NestedListWeightSumII {
-	public static int depthSumInverse()
+	//public static int depthSumInverse()
 	public static void main(String[] args) {
 		
 
