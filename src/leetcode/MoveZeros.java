@@ -2,7 +2,7 @@ package leetcode;
 
 public class MoveZeros {
 
-	public void moveZeros(int[] nums) {
+	public void moveZeros(int[] nums) { // this solution is even simpler!
 		int count = 0; // to count non-zero elements in array
 		
 		for (int i = 0; i < nums.length; i++) {
