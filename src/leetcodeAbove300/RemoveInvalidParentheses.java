@@ -13,7 +13,7 @@ public class RemoveInvalidParentheses {
 		Set<String> visited = new HashSet<>();
 		boolean level = false;
 		Queue<String> q = new LinkedList<>();
-		
+		System.out.println("The size of res is : " + res.size());
 		if (s == null || s.length() == 0)
 			return res;
 		q.offer(s);
@@ -27,10 +27,13 @@ public class RemoveInvalidParentheses {
 			}
 			if (level)
 				continue;
+			System.out.println(str);
 			for (int i = 0; i < str.length(); i++) {
 				if (!isParenthesis(str.charAt(i)))
 					continue;
-				String sub = new StringBuilder(str).deleteCharAt(i).toString();
+				String sub = new StringBuilder(str).deleteCharAt(i).toString(); // this line creates 
+				// an empty string when there is only a '(' or ')'
+				System.out.println("sub is :" + sub);
 				if (!visited.contains(sub)){
 					q.offer(sub);
 					visited.add(sub);
@@ -65,6 +68,8 @@ public class RemoveInvalidParentheses {
 		System.out.println("The result of removing str1 is : " + removeInvalidParentheses(str1));
 		System.out.println("The result of removing str2 is : " + removeInvalidParentheses(str2));
 		System.out.println("The result of removing str3 is : " + removeInvalidParentheses(str3));
+		/* removeInvalidParentheses result is [""] because empty string has been added to queue, too! A
+		 * And empty string is valid parentheses! */
 	}
 
 }
