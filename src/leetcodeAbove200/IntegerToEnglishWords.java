@@ -12,12 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class IntegerToEnglishWords {
-	public static Map<Integer, String> initializeMap() {
-		Map<Integer, String> map = new HashMap<>();
-        map.put(0, "Zero");
+	Map<Integer, String> map = new HashMap<>();
+	public void initializeMap() {
+		map.put(0, "Zero");
         map.put(1, "One");
         map.put(2, "Two");
-        map.put(3, "Three"); //
+        map.put(3, "Three"); 
         map.put(4, "Four");
         map.put(5, "Five");
         map.put(6, "Six");
@@ -42,51 +42,78 @@ public class IntegerToEnglishWords {
         map.put(70, "Seventy");
         map.put(80, "Eighty");
         map.put(90, "Ninety");
-        return map;
 	}
-    public static String numToWords(int num) {
-    		Map<Integer, String> map = initializeMap();
-    		String res = ""; // initialize empty string variable
+    public String numToWords(int num) {
+    		initializeMap();
+    		StringBuilder sb = new StringBuilder();
             int billion = 1000000000;
             int million = 1000000;
             int thousand = 1000;
-            int hundred = 100;
-            int ten = 10;
-            while (num > 0) {
-                if (num / billion > 0) {
-                    res += map.get(num / billion) + " Billion ";
-                    num %= billion;
-                }
-                else if (num / million > 0) {
-                    res += map.get(num / million) + " Million ";
-                    num %= million;
-                }
-                else if (num / thousand > 0) {
-                    res += map.get(num / thousand) + " Thousand ";
-                    num %= thousand;
-                }
-                else if (num / hundred > 0) {
-                    res += map.get(num / hundred) + " Hundred";
-                    num %= hundred;
-                }
-                else if (num / ten > 0) {
-                    if (map.containsKey(num)) {
-                        res += " " + map.get(num);
+            if (num == 0)
+    				return map.get(0);
+            
+            if (num >= billion) {
+            		int extra = num / billion;
+            		sb.append(convert(extra) + " Billion");
+            		num %= billion;
+            		//System.out.println("after billion loop : " + num);
+            }
+            
+            if (num >= million) {
+            		int extra = num / million;
+            		sb.append(convert(extra) + " Million");
+            		num %= million;
+            		//System.out.println("after million loop : " + num);
+            }
+            
+            if (num >= thousand) {
+            		int extra = num / thousand;
+            		sb.append(convert(extra) + " Thousand");
+            		num %= thousand;
+            		//System.out.println("after thousand loop : " + num);
+            }
+            	
+            if (num > 0) {
+            		sb.append(convert(num));
+            }
+            
+            
+            return sb.toString().trim();
+    }
+    
+    private String convert(int num) {
+    		StringBuilder sb = new StringBuilder();
+    		if (num >= 100) {
+    			int extra = num / 100;
+    			sb.append(" " + map.get(extra) + " Hundred");
+    			num %= 100;
+    			//System.out.println("after hundred loop : " + num);
+    		}
+    		
+    		if(num > 0){
+                if(num > 0 && num <= 20){
+                    sb.append(" " + map.get(num));
+                }else{
+                    int numTen = num / 10;
+                    sb.append(" " + map.get(numTen * 10));
+     
+                    int numOne = num % 10;
+                    if(numOne > 0){
+                        sb.append(" " + map.get(numOne));
                     }
-                    else {
-                        int remain = num % 10; //
-                        res += " " + map.get(num - remain) + " " + map.get(remain);
-                        num = 0;
-                    }       
                 }
             }
-            return res;
+    		
+		return sb.toString();
     }
 	public static void main(String[] args) {
-		System.out.println(numToWords(123));
-		System.out.println(numToWords(12345));
-		System.out.println(numToWords(1234567));
-		System.out.println(numToWords(1234567890));
+		IntegerToEnglishWords solution = new IntegerToEnglishWords();
+		System.out.println(solution.numToWords(30)); // => "Thirty"
+		System.out.println(solution.numToWords(100)); // => "One Hundred"
+		System.out.println(solution.numToWords(123));
+		System.out.println(solution.numToWords(12345));
+		System.out.println(solution.numToWords(1234567));
+		System.out.println(solution.numToWords(1234567890));
 	}
 
 }
