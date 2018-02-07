@@ -12,7 +12,8 @@ package leetcode;
 //Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
 public class LongestSubstringWithoutRepeating {
-	public int lengthOfLongestSubstring(String s) {
+	public static int lengthOfLongestSubstring(String s) {
+		if (s == null || s.length() == 0) return 0;
         if (s.length() <= 1)
             return s.length();
         int prev = 0;
@@ -32,6 +33,11 @@ public class LongestSubstringWithoutRepeating {
             max = Math.max(max, i + 1 - prev);
         }
         return max;
-        
      }
+	
+	public static void main(String[] args) {
+		System.out.println(lengthOfLongestSubstring("bbbbb")); // => "b" (1)
+		System.out.println(lengthOfLongestSubstring(null)); // => 0
+		System.out.println(lengthOfLongestSubstring("pwwkew")); // => "kew" (3)
+	}
 }
