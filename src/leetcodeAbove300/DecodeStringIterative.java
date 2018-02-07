@@ -22,7 +22,8 @@ public class DecodeStringIterative { // This solution is best for this question!
 				strings.push(curString);
 				curString = "";
 			} 
-			else if (ss[i] >= 'a' && ss[i] <= 'z') {
+			else if ((ss[i] >= 'a' && ss[i] <= 'z' )||( ss[i] >= 'A' && ss[i] <= 'Z') ) { 
+				/* 大小写字母都要囊括啊！！*/
 				if (!counts.isEmpty())
 					curString += ss[i];
 				else
@@ -47,9 +48,9 @@ public class DecodeStringIterative { // This solution is best for this question!
 		return result.toString();
 	}
 	public static void main(String[] args) {
-		System.out.println(decodeString("3[a]2[bc]"));
-		System.out.println(decodeString("2[abc]3[cd]ef"));
-		System.out.println(decodeString("3[a2[c]]"));
+		System.out.println(decodeString("3[a]2[bc]")); // => aaabcbc
+		System.out.println(decodeString("2[abc]3[cd]ef")); // => abcabccdcdcdef
+		System.out.println(decodeString("3[a2[c]]")); // => accaccacc
 	}
 
 }
