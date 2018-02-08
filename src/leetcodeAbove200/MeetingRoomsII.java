@@ -11,31 +11,32 @@ import java.util.*;
 // Solution analysis: intervals with overlappings cannot use one meeting room. so sort the array first
 // poll non-overlapping from min heap and increase rooms whenever overlapping happens
 
-public class MeetingRoomsII {
-	public int minMeetingRooms(Interval[] intervals) {  
-		Arrays.sort(intervals, new IntervalComparator());
+public class MeetingRoomsII { // (Greedy algorithm + priority queue solution) Time complexity o(nlogn), space complexity o(n)
+	public static int minMeetingRooms(Interval[] intervals) { 
+		// corner cases first
+		if (intervals == null || intervals.length == 0)
+			return 0;
+		Arrays.sort(intervals, (Interval i1, Interval i2) -> i1.start - i2.start);
 		PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-		int rooms = 0;
-		for (int i = 0; i < intervals.length; i++) {
-			if (minHeap.size() == 0) {
-				minHeap.add(intervals[0].end);
-				rooms++;
-				continue;
-			}
-			if (minHeap.peek() <= intervals[i].start) {
+		
+		minHeap.offer(intervals[0].end);
+		for (int i = 1; i < intervals.length; i++) {
+			if (intervals[i].start >= minHeap.peek())
 				minHeap.poll();
-				minHeap.add(intervals[i].end);
-			} else {
-				minHeap.add(intervals[i].end);
-				rooms++;
-			}
+			minHeap.offer(intervals[i].end);
 		}
-		return rooms;
+		return minHeap.size();
 	}
-}
-
-class IntervalComparator implements Comparator<Interval> {
-	public int compare(Interval a, Interval b) {
-		return a.start - b.start;
+	
+	public static void main(String[] args) {
+		Interval i1 = new Interval(0, 30);
+		Interval i2 = new Interval(5, 10);
+		Interval i3 = new Interval(15, 20);
+		Interval[] intervals = new Interval[3];
+		intervals[0] = i1;
+		intervals[1] = i2;
+		intervals[2] = i3;
+		
+		System.out.println("Min rooms for this case is: " + minMeetingRooms(intervals)); // => 2
 	}
 }
