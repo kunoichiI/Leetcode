@@ -20,10 +20,21 @@ public class FourSum {
 	public List<List<Integer>> fourSum(int[] nums, int target) {
 	         // Since we use set here, we don't need to dedup data
 	        Set<List<Integer>> result = new HashSet<List<Integer>>();
+	        if (nums == null || nums.length < 4)
+	        		return new ArrayList<List<Integer>>(result);
 	        Arrays.sort(nums);
 	        Map<Integer, Set<PairEle>> map = new HashMap<Integer, Set<PairEle>>();
 	        for (int i=0; i<nums.length; i++) {
 	            // Note the order of these two for-loops is critical
+		        	for (int j=0; j<i; j++) {
+//	            		System.out.println("j is : " + j);
+//	            		System.out.println("i is : " + i);
+	                int a = nums[j], b = nums[i];
+	                if (!map.containsKey(a+b)) {
+	                    map.put(a+b, new HashSet<PairEle>());
+	                }
+	                map.get(a+b).add(new PairEle(a, b));
+	            }
 	            for (int j=i+1; j<nums.length; j++) {
 	                int pairSum = nums[i] + nums[j];
 	                if (map.containsKey(target - pairSum)) {
@@ -37,16 +48,34 @@ public class FourSum {
 	                    }
 	                }
 	            }
-	            for (int j=0; j<i; j++) {
-	                int a = nums[j], b = nums[i];
-	                if (!map.containsKey(a+b)) {
-	                    map.put(a+b, new HashSet<PairEle>());
-	                }
-	                map.get(a+b).add(new PairEle(a, b));
-	            }
+	            
 	        }
 	        return new ArrayList<List<Integer>>(result);
 	    }
+	
+	public static void main(String[] args) {
+		int[] nums = {1, 0, -1, 0, -2, 2 };
+		int target = 0;
+		FourSum solution = new FourSum();
+		List<List<Integer>> res = solution.fourSum(nums, target);
+		res.stream()
+			.forEach(System.out::println); // => [-2, 0, 0, 2], [-1, 0, 0, 1], [-2, -1, 1, 2]
+		
+		int[] nums1 = null;
+		int target1 = 1;
+		List<List<Integer>> res1 = solution.fourSum(nums1, target1);
+		System.out.println("-----------");
+		System.out.println("The output should be empty this time :)"); 
+		res1.stream()
+			.forEach(System.out::println); // => []
+		
+		int[] nums2 = { 1, 2, 2, 1};
+		int target2 = 6;
+		List<List<Integer>> res2 = solution.fourSum(nums2, target2);
+		System.out.println("-----------");
+		res2.stream()
+		.forEach(System.out::println); // => 
+	}
 }
 
 class PairEle {
