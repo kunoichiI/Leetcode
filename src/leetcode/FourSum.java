@@ -24,32 +24,43 @@ public class FourSum {
 	        		return new ArrayList<List<Integer>>(result);
 	        Arrays.sort(nums);
 	        Map<Integer, Set<PairEle>> map = new HashMap<Integer, Set<PairEle>>();
-	        for (int i=0; i<nums.length; i++) {
-	            // Note the order of these two for-loops is critical
-		        	for (int j=0; j<i; j++) {
-//	            		System.out.println("j is : " + j);
-//	            		System.out.println("i is : " + i);
-	                int a = nums[j], b = nums[i];
-	                if (!map.containsKey(a+b)) {
-	                    map.put(a+b, new HashSet<PairEle>());
-	                }
-	                map.get(a+b).add(new PairEle(a, b));
-	            }
-	            for (int j=i+1; j<nums.length; j++) {
-	                int pairSum = nums[i] + nums[j];
-	                if (map.containsKey(target - pairSum)) {
-	                    for (PairEle p : map.get(target - pairSum)) {
-	                        List<Integer> l = new LinkedList<>();
-	                        l.add(p.first);
-	                        l.add(p.second);
-	                        l.add(nums[i]);
-	                        l.add(nums[j]);
-	                        result.add(l);
-	                    }
-	                }
-	            }
-	            
+	        for (int i = 0; i < nums.length; i++) {
+	        		//System.out.println("outside loop i is: " + i);
+	        		// Here two for loops order really matters!!!!!
+		        	for (int j = i + 1; j < nums.length; j++) {
+		                int pairSum = nums[i] + nums[j];
+//		                System.out.println("pairSum is : " + pairSum);
+//		                System.out.println("i is here: " + i + " ,j is here: " + j);
+		                if (map.containsKey(target - pairSum)) {
+		                		//System.out.println("sum is: " + pairSum + " ,difference is : " + (target - pairSum));
+		                    for (PairEle p : map.get(target - pairSum)) {
+		                        List<Integer> l = new LinkedList<>();
+		                        l.add(p.first);
+		                        l.add(p.second);
+		                        l.add(nums[i]);
+		                        l.add(nums[j]);
+		                        result.add(l);
+		                    }
+		                }
+		        }
+		        	
+	        		for (int j = 0; j < i; j++) {
+	        			//System.out.println("j is : " + j);
+	        			//System.out.println("i is : " + i);
+	        			int a = nums[j], b = nums[i];
+	        			if (!map.containsKey(a+b)) {
+	        				map.put(a+b, new HashSet<PairEle>());
+	        			}
+	        			map.get(a+b).add(new PairEle(a, b));
+	        		}
+	        		
+		        
 	        }
+	            // Note the order of these two for-loops is critical
+
+	            
+	            
+	        //}
 	        return new ArrayList<List<Integer>>(result);
 	    }
 	
@@ -74,7 +85,21 @@ public class FourSum {
 		List<List<Integer>> res2 = solution.fourSum(nums2, target2);
 		System.out.println("-----------");
 		res2.stream()
-		.forEach(System.out::println); // => 
+		.forEach(System.out::println); // =>  [1, 1, 2, 2]
+		
+		int[] nums3 = { 3, 5, 0, -2, -1, 0, -5 };
+		int target3 = 0;
+		List<List<Integer>> res3 = solution.fourSum(nums3, target3);
+		System.out.println("-----------");
+		res3.stream()
+		.forEach(System.out::println); // => [-2, -1, 0, 3], [-5, 0, 0, 5]
+		
+		int[] nums4 = {-3, -1, 0, 2, 4, 5};
+		int target4 = 0;
+		List<List<Integer>> res4 = solution.fourSum(nums4, target4);
+		System.out.println("-----------");
+		res4.stream()
+		.forEach(System.out::println); // => 	[-3, -1, 0, 4]
 	}
 }
 
