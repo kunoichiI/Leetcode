@@ -7,4 +7,5 @@ public class Interval {
 		start = s;
 		end = e;
 	}
+	public Interval() { start = 0; end = 0; }
 }
