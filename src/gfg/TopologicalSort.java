@@ -1,11 +1,10 @@
 package gfg;
-import java.util.ArrayList;
 // GFG link: https://www.geeksforgeeks.org/topological-sorting/
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
 
-//Topological Sorting
+//Topological Sorting (DFS + Stack)
 //Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge uv, vertex u comes before v in the ordering. 
 //Topological Sorting for a graph is not possible if the graph is not a DAG.
 
@@ -22,6 +21,19 @@ public class TopologicalSort {
 		
 		System.out.println("Following is a Topological " + "sort of the given graph");
 		ts.topologicalSort();
+		System.out.println();
+		
+		// change order of nodes
+		TopologicalSort ts1 = new TopologicalSort(6);
+		ts1.addEdge(0, 5);
+		ts1.addEdge(0, 1);
+		ts1.addEdge(1, 2);
+		ts1.addEdge(3, 2);
+		ts1.addEdge(4, 3);
+		ts1.addEdge(4, 5);
+		
+		System.out.println("Following is a Topological 1" + "sort of the given graph");
+		ts1.topologicalSort();
 		
 		// Examples on runtime class initialization between array and list. They're different!
 		// at runtime, array knows its element type while list doesn't care what element it has!
@@ -58,7 +70,7 @@ public class TopologicalSort {
 	public TopologicalSort(int v) {
 		V = v;
 		adj = new LinkedList[v];
-		System.out.println("class name is : " + adj.getClass());
+		//System.out.println("class name is : " + adj.getClass());
 		for (int i = 0; i < v; i++) {  // can reach every vertex 
 			adj[i] = new LinkedList<Integer>();
 			//System.out.println(adj[i]);
