@@ -14,7 +14,7 @@ import java.util.Arrays;
 //Follow up: Could you solve it in O(n2) runtime?
 
 public class ThreeSumSmaller {
-	public int threeSumSmaller(int[] nums, int target) {
+	public static int threeSumSmaller(int[] nums, int target) {
 		if (nums == null || nums.length < 3) return 0;
 		
 		// Sort the array
@@ -35,4 +35,10 @@ public class ThreeSumSmaller {
 		}
 		return cnt;
 	}
+	
+	public static void main(String[] args) {
+		int[] nums = { -2, 1, 0, 3 };
+		System.out.print(threeSumSmaller(nums, 2)); // => 2 [-2, 0, 1], [-2, 0, 3]
+	}
+	
 }
