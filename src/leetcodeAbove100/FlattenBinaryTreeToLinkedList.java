@@ -36,7 +36,7 @@ public class FlattenBinaryTreeToLinkedList {
 
         if (lastNode != null) {
             lastNode.left = null;
-            lastNode.right = root;
+            lastNode.right = (root);
         }
 
         lastNode = root;

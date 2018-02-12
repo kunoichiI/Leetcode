@@ -46,12 +46,14 @@ public class AddBinary {
 		String a3 = "11", b3 = null;
 		String a4 = null, b4 = "11";
 		String a5 = "10101011", b5 = "10101110";
+		String a6 = "1", b6 = "1";
 		
 		System.out.println(addBinary(a1, b1)); // => null
 		System.out.println(addBinary(a2, b2)); // => "100"
 		System.out.println(addBinary(a3, b3)); // => "11"
 		System.out.println(addBinary(a4, b4)); // => "11"
 		System.out.println(addBinary(a5, b5)); // => "101011001"
+		System.out.println(addBinary(a6, b6)); // => "10"
 	}
 
 }

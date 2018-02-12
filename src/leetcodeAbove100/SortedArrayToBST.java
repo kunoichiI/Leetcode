@@ -19,7 +19,7 @@ public class SortedArrayToBST {
 		int mid = start + (end - start) / 2;
 		TreeNode root = new TreeNode(nums[mid]);
 		root.left = sortedArrayToBST(nums, start, mid - 1);
-		root.right = sortedArrayToBST(nums, mid + 1, end);
+		root.right = (sortedArrayToBST(nums, mid + 1, end));
 		return root;
 	}
 }

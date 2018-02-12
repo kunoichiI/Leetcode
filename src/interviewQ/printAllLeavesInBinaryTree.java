@@ -16,14 +16,14 @@ public class printAllLeavesInBinaryTree {
 		// binary tree 1
 		TreeNode root1 = new TreeNode(1);
 		root1.left = new TreeNode(2);
-		root1.right = new TreeNode(3);
+		root1.right = (new TreeNode(3));
 		root1.left.left = new TreeNode(4);
 		root1.right.left = new TreeNode(5);
-		root1.right.right = new TreeNode(8);
+		root1.right.right = (new TreeNode(8));
 		root1.right.left.left = new TreeNode(6);
-		root1.right.left.right = new TreeNode(7);
+		root1.right.left.right = (new TreeNode(7));
 		root1.right.right.left = new TreeNode(9);
-		root1.right.right.right = new TreeNode(10);
+		root1.right.right.right = (new TreeNode(10));
 		
 		TreeNode root2 = null;
 		TreeNode root3 = new TreeNode(4);

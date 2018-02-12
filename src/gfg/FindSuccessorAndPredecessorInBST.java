@@ -47,24 +47,7 @@ public class FindSuccessorAndPredecessorInBST {
 	}
 	public static void main(String[] args) {
 		// create a binary search tree here, check the notes for the graph or draw it yourself
-		TreeNode root = new TreeNode(15);
-		root.left = new TreeNode(5);
-		root.left.left = new TreeNode(3);
-		root.left.right = new TreeNode(7);
-		root.left.left.left = new TreeNode(2);
-		root.left.left.right = new TreeNode(4);
-		root.left.right.left = new TreeNode(6);
 		
-		root.right = new TreeNode(19);
-		root.right.left = new TreeNode(18);
-		root.right.right = new TreeNode(20);
-		root.left.left.left = new TreeNode(17);
-		
-		TreeNode pre = null;
-		TreeNode suc = null;
-		findPreSuc(root, pre, suc, 11);
-		System.out.println("The predecessor is :" + pre.val);
-		System.out.println("The successor is :" + suc.val);
 	}
 
 }

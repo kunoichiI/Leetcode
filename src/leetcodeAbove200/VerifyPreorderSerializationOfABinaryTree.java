@@ -36,17 +36,17 @@ public class VerifyPreorderSerializationOfABinaryTree {
         Stack<String> stack = new Stack<String>();
         String[] num = preorder.split(",");
         for(int i = 0; i < num.length; i++){
-        	stack.push(num[i]);
-        	while(stack.size() >= 3){
-        		if(stack.get(stack.size() - 1).equals("#") && stack.get(stack.size() - 2).equals("#") && !stack.get(stack.size() - 3).equals("#")){
-        			stack.pop();
-        			stack.pop();
-        			stack.pop();
-        			stack.push("#");
-        		}
-        		else 
-        			break;
-        	}
+	        	stack.push(num[i]);
+	        	while(stack.size() >= 3){
+	        		if(stack.get(stack.size() - 1).equals("#") && stack.get(stack.size() - 2).equals("#") && !stack.get(stack.size() - 3).equals("#")){
+	        			stack.pop();
+	        			stack.pop();
+	        			stack.pop();
+	        			stack.push("#");
+	        		}
+	        		else 
+	        			break;
+	        	}
         }
  
         return stack.size() == 1 && stack.peek().equals("#");
