@@ -1,17 +1,13 @@
 package interviewQ;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-// Pinterest Karat interview
+// Pinterest Karat interview (2018.2.15)
 /*
 Suppose we have some input data describing a graph of relationships between parents and children over multiple generations. The data is formatted as a list of (parent, child) pairs, where each individual is assigned a unique integer identifier.
 
@@ -48,8 +44,8 @@ int[][] parentChildPairs = new int[][] {
 7 -> []
 8 -> [9]
 9 -> []
-first colelction: any node value which doesn't exist in adjacent lists
-2nd collection: any node value that has less than two keys 
+first colelction: any node value that doesn't exist in adjacent lists
+2nd collection: any node value that has frequency equals to 1 in adjacent lists!!
 */
 public class FindParentsAndSubparents {
 	public static List<List<Integer>> findParentsAndSubparents(int[][] pairs) {
