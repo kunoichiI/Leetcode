@@ -1,5 +1,7 @@
 package leetcodeAbove200;
 
+import java.util.Arrays;
+
 //286. Walls and Gates
 //You are given a m x n 2D grid initialized with these three possible values.
 //
@@ -21,39 +23,42 @@ package leetcodeAbove200;
 //  0  -1   3   4
 
 public class WallsAndGates {
-	public void wallsAndGates(int[][] rooms) {
+	public static void wallsAndGates(int[][] rooms) {
 		if (rooms.length == 0 || rooms == null) {
 			return;
 		}
 		int m = rooms.length;
 		int n = rooms[0].length;
-		boolean[][] visited = new boolean[m][n];
 		
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				if (rooms[i][j] == 0) {
-					dfs(i, j, 0, visited, rooms);
+					dfs(i, j, rooms, 0);
 				}
 			}
 		}
 	}
 	
-	private void dfs(int i, int j, int distance, boolean[][] visited, int[][] rooms) {
-		if (i < 0 || j < 0 || i >= rooms.length || j >= rooms[0].length || rooms[i][j] == -1) return;
+	private static void dfs(int i, int j, int[][] rooms, int d) {
+		if (i < 0 || j < 0 || i >= rooms.length || j >= rooms[0].length || rooms[i][j] < d) return;
 		
-		if (rooms[i][j] < distance) return; // meet walls
-		
-		visited[i][j] = true;
-		rooms[i][j] = distance;
+		rooms[i][j] = d;
 		
 		// visit neighbors around rooms[i][j]
-		dfs(i+1, j, distance+1, visited, rooms);
-		dfs(i-1, j, distance+1, visited, rooms);
-		dfs(i, j+1, distance+1, visited, rooms);
-		dfs(i, j-1, distance+1, visited, rooms);
-		
-		visited[i][j] = false; //backtracking
-		return;
-		
+		dfs(i+1, j, rooms, d + 1);
+		dfs(i-1, j, rooms, d + 1);
+		dfs(i, j+1, rooms, d + 1);
+		dfs(i, j-1, rooms, d + 1);	
 	}
+	
+	public static void main(String[] args) {
+		int max = Integer.MAX_VALUE;
+		int[][] rooms = { { max, -1, 0, max },
+						 { max, max, max, -1 },
+						 { max, -1, max, -1 },
+						 { 0, -1, max, max } };
+		wallsAndGates(rooms);
+		System.out.println(Arrays.deepToString(rooms));
+		}
+	
 }
