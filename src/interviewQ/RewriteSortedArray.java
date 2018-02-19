@@ -16,10 +16,10 @@ public class RewriteSortedArray {
 			nums[++write] = key;	
 		}
 		System.out.println("array becomes: " + Arrays.toString(nums));
-		return write;
+		return write + 1;
 	}
 	public static void main(String[] args) {
-		int[] nums = { 1, 1, 2, 2, 3, 4, 5, 5, 5 };
+		int[] nums = { 1, 1, 1, 2, 2, 3, 4, 5, 5, 5 };
 		int res = rewriteSortedArray(nums);
 		System.out.println("res is : " + res); // 5
 	}
