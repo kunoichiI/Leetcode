@@ -12,7 +12,7 @@ package leetcode;
 //For the purpose of this problem, we define empty string as valid palindrome.
 
 public class Valid_Palindrome {
-	public boolean isPalindrome(String s) {
+	public static boolean isPalindrome(String s) {
         if(s==null||s.length()==0) return true;
  
 		s = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
@@ -26,4 +26,9 @@ public class Valid_Palindrome {
  
 		return true;
     }
+	
+	public static void main(String[] args) {
+		String s = "a.";
+		System.out.println("output is:" + isPalindrome(s)); // true
+	}
 }
