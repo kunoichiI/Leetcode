@@ -11,7 +11,7 @@ import java.util.*;
 
 
 public class EvaluateReversePolishNotation {
-	public int evalRPN(String[] tokens) {
+	public static int evalRPN(String[] tokens) {
         int returnValue = 0;
 		String operators = "+-*/";
  
@@ -45,4 +45,15 @@ public class EvaluateReversePolishNotation {
 		return returnValue;
         
     }
+	
+	public static void main(String[] args) {
+		String[] tokens = { "2", "1", "+", "3", "*" };
+		System.out.println("value is: " + evalRPN(tokens)); // 9
+		
+		String[] tokens1 = { "4", "13", "5", "/", "+" };
+		System.out.println("value is: " + evalRPN(tokens1)); // 6
+		
+		String[] tokens2 = { "0", "3", "/" };
+		System.out.println("value is: " + evalRPN(tokens2)); // 0
+	}
 }
