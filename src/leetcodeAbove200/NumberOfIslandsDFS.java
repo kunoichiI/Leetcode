@@ -10,6 +10,7 @@ public class NumberOfIslandsDFS { // My own solution with DFS, O(MxN) time, O(Mx
         boolean[][] visited = new boolean[h][w];
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
+            		System.out.println("we are at: " + grid[i][j]);
                 if (visited[i][j] || grid[i][j] == '0') continue;
                 cnt++;
                 visit(grid, i, j, visited);
@@ -20,15 +21,15 @@ public class NumberOfIslandsDFS { // My own solution with DFS, O(MxN) time, O(Mx
     }
     
     public static void visit(char[][] grid, int i, int j, boolean[][] visited) {
-        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length)
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || visited[i][j] || grid[i][j] == '0')
             return;
-        if (!visited[i][j] && grid[i][j] == '1') {
-            visited[i][j] = true;
-            visit(grid, i - 1, j, visited);
-            visit(grid, i + 1, j, visited);
-            visit(grid, i, j - 1, visited);
-            visit(grid, i, j + 1, visited);
-        }
+        //if (!visited[i][j] && grid[i][j] == '1') {
+        visited[i][j] = true;
+        visit(grid, i - 1, j, visited);
+        visit(grid, i + 1, j, visited);
+        visit(grid, i, j - 1, visited);
+        visit(grid, i, j + 1, visited);
+        //}
     }
 	public static void main(String[] args) {
 //		11110
