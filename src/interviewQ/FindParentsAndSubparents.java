@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 
 // Pinterest Karat interview (2018.2.15)
 /*
-Suppose we have some input data describing a graph of relationships between parents and children over multiple generations. The data is formatted as a list of (parent, child) pairs, where each individual is assigned a unique integer identifier.
+Suppose we have some input data describing a graph of relationships between parents and children over multiple generations. 
+The data is formatted as a list of (parent, child) pairs, where each individual is assigned a unique integer identifier.
 
 For example, in this diagram, 3 is a child of 1 and 2, and 5 is a child of 4:
             
@@ -96,7 +97,7 @@ public class FindParentsAndSubparents {
 	    //map.entrySet().stream().forEach(System.out::println);
 		List<Integer> res = map.entrySet().stream().filter(e -> e.getValue() == 1)
 							.map(Map.Entry::getKey)
-							.collect(Collectors.toList());
+							.collect(Collectors.toList()); // only get key-value pair where value is 1(freq is 1)
 							
 	    
 	    return res;
