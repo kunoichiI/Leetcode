@@ -22,127 +22,52 @@ import java.util.Stack;
 //minStack.top();      --> Returns 0.
 //minStack.getMin();   --> Returns -2.
 
-public class MinStack {  // Two stacks, one to store values, the other to store minValue when a value being pushed in to the first stack
-	 
-	// O(1) time, O(N) extra space
-//	private Stack<Integer> stack;
-//	    private Stack<Integer> minStack;
-//	    /** initialize your data structure here. */
-//	    public MinStack() {
-//	        stack = new Stack<Integer>();
-//	        minStack = new Stack<Integer>();
-//	    }
-//	    
-//	    public void push(int x) {
-//	        stack.push(x);
-//	        if (minStack.isEmpty()) {
-//	            minStack.push(x);
-//	        }else {
-//	            minStack.push(Math.min(minStack.peek(), x));
-//	        }
-//	    }
-//	    
-//	    public void pop() {
-//	        minStack.pop();
-//	        stack.pop();
-//	    }
-//	    
-//	    public int top() {
-//	        return stack.peek();
-//	    }
-//	    
-//	    public int getMin() {
-//	        return minStack.peek();
-//	    }
-	
+public class MinStack { 
 	// O(1) time, O(1) extra space
 	private Stack<Integer> stack;
 	private int minValue;
 	
 	public MinStack() {
 		stack = new Stack<Integer>();
+		minValue = Integer.MAX_VALUE;
 	}
 	
 	public int getMin() {
-		if (!stack.isEmpty()) {
-			System.out.println("Minimum Element in the " + " stack is: " + minValue);
-			return minValue;
-		}else {
-			System.out.println("Stack is empty");
-			return Integer.MIN_VALUE;
-		}
+		return minValue;
 	}
 	
-	public int peek() {
-		if (!stack.isEmpty()) {
-			int value = stack.peek();
-			if (value < minValue) {
-				int actValue = 2 * value - minValue;
-				System.out.print("Top Most Element is: ");
-				return actValue;
-			} else {
-				System.out.print("Top Most Element is: ");
-				return value;
-			}	
-		}else {
-			System.out.println("Stack is empty ");
-			return Integer.MIN_VALUE;
-		}
-	}
-	
-	public int pop() {
-		if (!stack.isEmpty()) {
-			int value = stack.pop();
-			if (value < minValue) {
-				value = 2 * value - minValue;
-			}
-			System.out.print("Top Most Element Removed: ");
-			return value;
-		}else {
-			System.out.println("Stack is empty");
-			return Integer.MIN_VALUE;
-		}
+	public void pop() {
+		if (stack.pop() == minValue) minValue = stack.pop();
 	}
 	
 	public void push(int x) {
-		if (stack.isEmpty()) {
+		if (x <= minValue) {
+			stack.push(minValue);
+			System.out.println("minValue: " + minValue + " has been pushed into stack");
 			minValue = x;
-			System.out.println("Number Inserted: " + x);
-			stack.push(x);
-		}else {
-			if (x < minValue) {
-				stack.push(2*x - minValue);
-				minValue = x;
-			}else {
-				stack.push(x);
-			}
 		}
+		stack.push(x);
 	}
 	
-	public void output() {
-		while(!stack.isEmpty()) {
-			int x = stack.pop();
-			System.out.println(x);
-		}
-	}
+	public int top() {
+        return stack.peek();
+    }
 	
-	    public static void main(String[] args)
-	    {
-	        MinStack s = new MinStack();
-	        s.push(3);
-	        s.push(5);
-	        s.getMin();
-	        s.push(2);
-	        s.push(1);
-	        s.getMin();
-	        s.pop();
-	        s.getMin();
-	        s.pop();
-	        s.peek();
-	        
-	        s.output();
-	        
-	    }
+    public static void main(String[] args)
+    {
+        MinStack s = new MinStack();
+        s.push(3);
+        s.push(5);
+        System.out.println(s.getMin()); // 3
+        s.push(2);
+        s.push(1);
+        System.out.println(s.getMin()); // 1
+        s.pop();
+        System.out.println(s.getMin()); // 2
+        s.pop();
+        System.out.println(s.top());  // 5
+        System.out.println(s.getMin()); // 3
+    }
 	
 }
 
