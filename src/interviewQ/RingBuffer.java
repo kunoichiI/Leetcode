@@ -24,10 +24,6 @@ public class RingBuffer {
 		maxSize = c;
 	}
 	
-	public int getSize() {
-		return bufLen;
-	}
-	
 	public boolean isEmpty() {
 		return bufLen == 0;
 	}
@@ -74,7 +70,9 @@ public class RingBuffer {
 		Byte[] srcBuf = {(byte)1, (byte)2, (byte)3, (byte)4};
 		//System.out.println("what's srcBUf like" + Arrays.toString(srcBuf));
 		System.out.println(rb.push(srcBuf, 3)); // 3
+		System.out.println(Arrays.toString(buffer)); // [1, 2, 3, 0, 0]
 		System.out.println(rb.push(srcBuf, 3)); // 2
+		System.out.println(Arrays.toString(buffer)); // [1, 2, 3, 1, 2]
 		System.out.println(rb.push(srcBuf, 3)); // 0
 		
 		rb.pop(3);
