@@ -51,4 +51,9 @@ public class MaximumSubarrayOptimized {
 		System.out.println(Arrays.toString(maxSubarray(array3))); // [0, 3, 175]
 	}
 
+	/*
+	 * 解题思路：移动窗口sliding window法，curSum是第一个数值，如果curSum是正数，增加窗口size
+	 * curLength + 1，curSum += nums【i】，如果是负数，curLength等于1，curStart取当前index
+	 * 每一次循环内，判断curSum和bestSum的大小，不断更新bestSum， bestLength和bestStart，直到循环结束。
+	 */
 }
