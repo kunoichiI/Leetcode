@@ -9,7 +9,6 @@ package leetcode;
 
 // Solution 1: DAC Max(left max subarray, right max subarray, max cross subarray)
 public class MaximumSubarray {
-
 	public int maxSubArray(int[] nums) {
 		if (nums == null || nums.length == 0) {
 			return 0;
