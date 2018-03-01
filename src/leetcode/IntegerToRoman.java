@@ -35,4 +35,12 @@ public class IntegerToRoman {
 		System.out.println("456 is: " + intToRoman(num3)); // => "CDLVI"
 		System.out.println("432 is: " + intToRoman(num4)); // => "CDXXXII"
 	}
+	
+	/*
+	 * 这道题的关键是知晓罗马数字和十进制数字的转换规则，然后使用两个array分别存index对应的mappping，数值从大到小排列
+	 * 对应其罗马数字字符串
+	 * 对于一个int数值，从左往右找到第一个小于当前value的数，然后用数值除以这个array数，得到罗马数字个数
+	 * 然后int数值对这个array数取余数并赋值给自身，（相当于减小自己）
+	 * 然后继续在array后面寻找第一个小于当前的数。重复此动作直到num变为0.
+	 */
 }
