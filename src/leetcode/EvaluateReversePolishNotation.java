@@ -56,4 +56,10 @@ public class EvaluateReversePolishNotation {
 		String[] tokens2 = { "0", "3", "/" };
 		System.out.println("value is: " + evalRPN(tokens2)); // 0
 	}
+	
+	/*
+	 * 解题思路：用一个stack存数值和计算后的数值，每次遇到运算符时出栈两下，得到运算符前面的两个运算数字，
+	 * 第二个出栈的数是第一个入栈的数，所以不同的运算符，比如 - / 时，第二个出栈的要作为被减数和被除数
+	 * 计算完后把计算值入栈，然后遇到数值直接入栈， 重复此操作（遇到运算符时出栈进行计算）。直到循环结束
+	 */
 }

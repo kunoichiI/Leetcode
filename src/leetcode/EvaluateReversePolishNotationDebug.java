@@ -5,9 +5,8 @@ import java.util.Stack;
 public class EvaluateReversePolishNotationDebug {
 	// why if else is not accepted while switch is accepted in leetcode???
 	public static int evalRPN(String[] tokens) {
-        int res = 0;
         if (tokens == null || tokens.length == 0)
-            return res;
+            return 0;
         
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < tokens.length; i++) {
@@ -45,4 +44,8 @@ public class EvaluateReversePolishNotationDebug {
 		System.out.println("value is: " + evalRPN(tokens2)); // 0
 	}
 
+		/*
+		 * 这个解法不能通过leetcode， emptyStackException，但是可以在eclipse里运行，原因不明，
+		 * 暂时debug无能。留到后面解释，所以遇到这题最好使用switch。。（担心coderpad也无法通过）
+		 */
 }
