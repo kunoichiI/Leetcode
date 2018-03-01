@@ -20,7 +20,7 @@ import java.util.Map;
 //2, [[1,0],[0,1]]
 
 public class CourseSchedule {
-	public boolean canFinish(int numCourses, int[][] prerequisites) {
+	public static boolean canFinish(int numCourses, int[][] prerequisites) {
         if (numCourses <= 0) {
             return true;
         }
@@ -32,16 +32,12 @@ public class CourseSchedule {
         // First transform the edge list to adjacency list
         Map<Integer, List<Integer>> adjList = new HashMap<>();
         for (int[] edge : prerequisites) {
-            if (adjList.containsKey(edge[0])) {
-                List<Integer> neighbors = adjList.get(edge[0]);
-                neighbors.add(edge[1]);
-                adjList.put(edge[0], neighbors);
-            } else {
-                List<Integer> neighbors = new ArrayList<Integer>();
-                neighbors.add(edge[1]);
-                adjList.put(edge[0], neighbors);
+            if (!adjList.containsKey(edge[1])) {
+               adjList.put(edge[1], new ArrayList<Integer>());
             }
+            adjList.get(edge[1]).add(edge[0]);
         }
+        //System.out.println("map is: " + adjList);
          
         int[] visited = new int[numCourses];
         // Check if the graph contains a circle, if yes, return false.
@@ -54,7 +50,7 @@ public class CourseSchedule {
         return true;
     }
      
-    private boolean hasCircles(int vertexId, int[] visited, Map<Integer, List<Integer>> adjList) {
+    private static boolean hasCircles(int vertexId, int[] visited, Map<Integer, List<Integer>> adjList) {
         if (visited[vertexId] == -1) {
             return true;
         }
@@ -66,6 +62,7 @@ public class CourseSchedule {
         visited[vertexId] = -1;
          
         List<Integer> neighbors = adjList.get(vertexId);
+        System.out.println("is there null neighhbors : " + neighbors);
         if (neighbors != null) {
             for (int neighbor : neighbors) {
                 if (hasCircles(neighbor, visited, adjList)) {
@@ -78,4 +75,22 @@ public class CourseSchedule {
          
         return false;
     }
+    
+    public static void main(String[] args) {
+    		int[][] prerequisites1 = {
+    				{1, 0}, {2, 1}, {3, 2}, {1, 3}
+    		};
+    		System.out.println(canFinish(4, prerequisites1)); // false
+    		
+    		int[][] prerequisites2 = {
+    				{1, 0}, {2, 1}
+    		};
+    		System.out.println(canFinish(3, prerequisites2)); // true
+    }
+    /*
+     * 解题思路：先构建图，hashmap中vertex是key， value是adjacency List
+     * 对从0 到n-1的courses，进行cycle检测。本质是一个DFS，每遇到一个vertex，先mark -1，
+     * 然后对其所有邻居进行访问， 先检测邻居里有没有已经是-1 的，有的话说明cycle出现
+     * 如果没有的话，mark这个vertex为1（说明暂时没有cycle），继续循环直到结束。
+     */
 }

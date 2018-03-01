@@ -19,77 +19,52 @@ import java.util.*;
 //There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. So one correct course order is [0,1,2,3]. Another correct ordering is[0,2,1,3].
 
 public class CourseScheduleII {
-	private int label;
-    public int[] findOrder(int numCourses, int[][] prerequisites) {
-        if (numCourses <= 0) {
-            return new int[0];
-        }
-        this.label = numCourses - 1;
-         
-        int[] result = new int[numCourses];
-         
-        // No prerequisites
-        if (prerequisites == null || prerequisites.length == 0) {
-            for (int i = 0; i < numCourses; i++) {
-                result[i] = i;
-            }
-             
-            return result;
-        }
-         
-        // Convert the edge list to adj. list
+	public static int[] findOrder(int numCourses, int[][] prerequisites) {
         Map<Integer, List<Integer>> adjList = new HashMap<>();
-        for (int[] edge : prerequisites) {
-            if (adjList.containsKey(edge[1])) {
-                List<Integer> neighbors = adjList.get(edge[1]);
-                neighbors.add(edge[0]);
-                adjList.put(edge[1], neighbors);
-            } else {
-                List<Integer> neighbors = new ArrayList<Integer>();
-                neighbors.add(edge[0]);
-                adjList.put(edge[1], neighbors);
-            }
+        
+        for (int[] pre : prerequisites) {
+            if (!adjList.containsKey(pre[1]))
+                adjList.put(pre[1], new ArrayList<Integer>());
+            adjList.get(pre[1]).add(pre[0]);
         }
-         
+        System.out.println("the graph is: " + adjList);
         int[] visited = new int[numCourses];
+        Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < numCourses; i++) {
-            if (toplogicalSorting(i, visited, adjList, result) == false) {
-                return new int[0];
-            }
+            if (hasCircle(i, visited, adjList, stack))
+               return new int[0];
         }
-         
-        return result;
+        List<Integer> list = new ArrayList<>();
+        while (!stack.isEmpty()) {
+        		list.add(stack.pop());
+        }
+        return list.stream().mapToInt(i -> i).toArray();
     }
-     
-    private boolean toplogicalSorting(int vertexId, int[] visited, 
-            Map<Integer, List<Integer>> adjList,
-                                   int[] result) {
-        // Has been visited
-        if (visited[vertexId] == -1) {
-            return false;
-        }
-         
-        // Has been added into the list
-        if (visited[vertexId] == 1) {
+    
+    public static boolean hasCircle(int i, int[] visited,  Map<Integer, List<Integer>> adjList, Stack<Integer> stack) {
+        if (visited[i] == -1)
             return true;
-        }
-         
-        visited[vertexId] = -1;
-         
-        List<Integer> neighbors = adjList.get(vertexId);
+        if (visited[i] == 1)
+            return false;
+        
+        visited[i] = -1;
+        List<Integer> neighbors = adjList.get(i);
         if (neighbors != null) {
             for (int neighbor : neighbors) {
-                if (toplogicalSorting(neighbor, visited, 
-                    adjList, result) == false) {
-                    return false;
-                }
+                if (hasCircle(neighbor, visited, adjList, stack))
+                    return true;
             }
         }
-         
-        result[label--] = vertexId;
-        visited[vertexId] = 1;
-         
-        return true;
-                                        
+        visited[i] = 1;
+        stack.push(i);
+        return false;
+    }
+    
+    public static void main(String[] args) {
+    		int[][] prerequisites1 = {
+    				{1, 0}, {2, 0}, {3, 1}, {3, 2}
+    		};
+    		int[] arr = findOrder(4, prerequisites1); // [0, 1, 3, 2] 
+    		System.out.println(Arrays.toString(arr));
     }
 }
