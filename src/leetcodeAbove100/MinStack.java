@@ -2,11 +2,9 @@ package leetcodeAbove100;
 
 import java.util.Stack;
 
-//155. Min Stack  QuestionEditorial Solution  My Submissions
-//Total Accepted: 82450
-//Total Submissions: 348699
-//Difficulty: Easy
-//Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+//155. Min Stack 
+//Design a stack that supports push, pop, top, 
+//and retrieving the minimum element in constant time.
 //
 //push(x) -- Push element x onto stack.
 //pop() -- Removes the element on top of the stack.
@@ -43,7 +41,7 @@ public class MinStack {
 	public void push(int x) {
 		if (x <= minValue) {
 			stack.push(minValue);
-			System.out.println("minValue: " + minValue + " has been pushed into stack");
+			//System.out.println("minValue: " + minValue + " has been pushed into stack");
 			minValue = x;
 		}
 		stack.push(x);
