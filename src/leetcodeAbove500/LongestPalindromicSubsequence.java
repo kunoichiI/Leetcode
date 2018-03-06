@@ -36,8 +36,8 @@ public class LongestPalindromicSubsequence { // Dynamic Programming wih a 2D arr
         return dp[0][len - 1];
     }
 	public static void main(String[] args) {
-		
-
+		System.out.println(longestPalindromeSubseq("bbbab")); // 4
+		System.out.println(longestPalindromeSubseq("cbbd")); // 2
 	}
 	/*
 	 * 解题思路： 搞清楚optimal substructure，比如bbbab， 最左b和最右b相同，所以bba的最大回文subsequence
