@@ -11,7 +11,7 @@ public class ConstructExpressionTree {
 			char ch = postfix[idx];
 			if (Character.isDigit(ch))
 				stack.push(new ExTreeNode(ch));
-			else { // meet operator, start calculating here!!
+			else { // meet operator, start building subtree here!!
 				ExTreeNode a = stack.pop();
 				ExTreeNode b = stack.pop();
 				ExTreeNode root = new ExTreeNode(ch);

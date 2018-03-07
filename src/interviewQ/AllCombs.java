@@ -27,12 +27,12 @@ public class AllCombs { // o(n) time, o(n) space
 	}
 	public static void main(String[] args) {
 		String s = "a2c";
-		String s2 = "abc234efgcc";
+		//String s2 = "abc234efgcc";
 		Set<String> set1 = allCombs(s);
 		set1.stream().forEach(System.out::println);
 		System.out.println("---------------");
-		Set<String> set2 = allCombs(s2);
-		set2.stream().forEach(System.out::println);
+//		Set<String> set2 = allCombs(s2);
+//		set2.stream().forEach(System.out::println);
 	}
 
 }
