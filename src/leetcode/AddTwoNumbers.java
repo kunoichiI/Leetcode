@@ -8,8 +8,8 @@ package leetcode;
 //Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 //Output: 7 -> 0 -> 8
 
-public class AddTwoNumbers {
-	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+public class AddTwoNumbers { // O(n) time, o(1) space
+	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null && l2 == null) return null; // This iterative solution gets TLE time running out..
         
         ListNode head = new ListNode(0);
@@ -28,4 +28,21 @@ public class AddTwoNumbers {
         }
         return head.next;
     }
+	
+	public static void main(String[] args) {
+		// l1: 2 -> 4 -> 3
+		ListNode l1 = new ListNode(2);
+		l1.next = new ListNode(4);
+		l1.next.next = new ListNode(3);
+		// l2: 5 -> 6 -> 4
+		ListNode l2 = new ListNode(5);
+		l2.next = new ListNode(6);
+		l2.next.next = new ListNode(4);
+		
+		ListNode node = addTwoNumbers(l1, l2);
+		while (node != null) {
+			System.out.print(node.val + " ");
+			node = node.next;
+		}
+	}
 }
