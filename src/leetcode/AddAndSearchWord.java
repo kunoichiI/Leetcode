@@ -1,24 +1,26 @@
 package leetcode;
 import java.util.*;
-//211. Add and Search Word - Data structure design 
-//Design a data structure that supports the following two operations:
-//
-//void addWord(word)
-//bool search(word)
-//search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.
-//
-//For example:
-//
-//addWord("bad")
-//addWord("dad")
-//addWord("mad")
-//search("pad") -> false
-//search("bad") -> true
-//search(".ad") -> true
-//search("b..") -> true
+/* 211. Add and Search Word - Data structure design 
+	Design a data structure that supports the following two operations:
+	
+	void addWord(word)
+	bool search(word)
+	search(word) can search a literal word or a regular expression string containing 
+	only letters a-z or .. A . means it can represent any one letter.
+	
+	For example:
+	
+	addWord("bad")
+	addWord("dad")
+	addWord("mad")
+	search("pad") -> false
+	search("bad") -> true
+	search(".ad") -> true
+	search("b..") -> true 
+*/
 
 public class AddAndSearchWord {
-private TrieNode root;
+	private TrieNode root;
     
     public AddAndSearchWord() {
         root = new TrieNode();
@@ -86,81 +88,3 @@ class TrieNode {
 // wordDictionary.addWord("word");
 // wordDictionary.search("pattern");
 
-
-
-// Improve performance by using an array to store child nodes ( Array implementation of trie, no '.' version)
-// class TrieNode {
-//	TrieNode[] children;
-//	boolean isLeaf;
-//	public TrieNode() {
-//		this.children = TrieNode[52];
-//	}
-//}
-
-//public class Trie {
-//	private TrieNode root;
-//	
-//	public Trie() {
-//		this.root = new TrieNode();
-//	}
-//	
-//	// Inserts a word into trie
-//	public void insert(String word) {
-//		TrieNode p = root;
-//		for (int i = 0; i < word.length(); i++) {
-//			char c = word.charAt(i);
-//			int index = c - 'a';
-//			if (root.children[index] == null) {
-//				TrieNode temp = new TrieNode();
-//				root.children[index] = temp;
-//				root = temp;
-//			} else {
-//				root = root.children[index];
-//			}
-//		}
-//		root.isLeaf = true; 
-//	}
-//	
-//	// returns if the word is in the trie
-//	public boolean search(String word) {
-//		TrieNode p = searchNode(word);
-//		if (p == null) {
-//			return false;
-//		}else {
-//			if (p.isLeaf) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-//	
-//	// search a prefix in trie
-//	public boolean startsWith(String prefix) {
-//		TrieNode p = searchNode(prefix);
-//		if (p == null) {
-//			return false;
-//		} else {
-//			return true;
-//		}
-//		
-//	}
-//	
-//	// helper
-//	public TrieNode searchNode(String s) {
-//		TrieNode p = root;
-//		for (int i = 0; i < s.length(); i++) {
-//			char c = s.charAt(i);
-//			int index = c - 'a';
-//			if (root.children[index] != null) {
-//				root = root.children[index];
-//			} else {
-//				return null;
-//			}
-//		}
-//		
-//		if (p == root) {
-//			return null;
-//		}
-//		return p;
-//	}
-// }
