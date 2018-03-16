@@ -41,3 +41,9 @@ public class BinaryTreeRightSideViewRecursive { // O(n) time, traverse all tree,
 class Max_level {
 	int max_level;
 }
+
+/*
+ * 解题思路：记录每一层level，用一个class记录maxLevel reference，每次先遍历右边的subtree，再遍历left substree
+ * 最右边的node总会最先被遍历完，这时maxLevel也将被记录，所以左边即将遍历的node都不会被加入res list
+ * 参考geeksforgeeks：
+ */
