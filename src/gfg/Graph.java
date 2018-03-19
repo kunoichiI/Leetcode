@@ -6,14 +6,14 @@ import java.util.Stack;
 
 public class Graph {
 	private int V;
-	private LinkedList<Integer> adj[];
+	private final LinkedList<Integer> adj[];
 	
 	@SuppressWarnings("unchecked")
 	public Graph(int v) {
 		this.V = v;
 		adj = new LinkedList[v];
 		for (int i = 0; i < v; i++) {
-			adj[i] = new LinkedList<Integer>();
+			adj[i] = new LinkedList<>();
 		}
 	}
 	
@@ -29,10 +29,14 @@ public class Graph {
 		return this.adj;
 	}
 	
+	public int getNoOfVertices() {
+		return this.adj.length;
+	}
+	
 	/*
 	 * exclusively for alien dictionary's topological sort
 	 */
-	public LinkedList<Character> topologialSort() {
+	public void topologialSort() {
 		LinkedList<Character> list = new LinkedList<>();
 		boolean[] visited = new boolean[V];
 		Stack<Integer> s = new Stack<>();
@@ -43,10 +47,9 @@ public class Graph {
 		}
 		
 		while(!s.isEmpty()) {
-			int j = s.pop();
-			list.add((char)j);
+			System.out.print((char)('a' + s.pop()) + " ");
 		}
-		return list;
+		
 	}
 	
 	public void helper(int i, boolean[] visited, Stack<Integer> s) {
