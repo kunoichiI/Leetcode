@@ -1,6 +1,4 @@
 package leetcodeAbove100;
-
-
 //127. Word Ladder  
 //Given two words (beginWord and endWord), and a dictionary's word list, find the length of shortest transformation sequence from beginWord to endWord, such that:
 //
@@ -15,77 +13,63 @@ package leetcodeAbove100;
 //As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" -> "cog",
 //return its length 5.
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
-public class Word_Ladder {
-
-	public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
-        if (wordList == null) return 0;
-        wordList.add(beginWord);
-        wordList.add(endWord);
-        
-        Queue<String> queue = new LinkedList<String>();
-        queue.offer(beginWord);
-        int level = 1;
-        Set<String> visited = new HashSet<String>();
-        visited.add(beginWord);
-        
-        while (!queue.isEmpty()) {
-            level++;
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                String cur = queue.poll();
-                for (String nextWord : getNextWords(cur, wordList)) {
-                    if (nextWord.equals(endWord)) {
-                        return level;
-                    }
-                    if (visited.contains(nextWord)) {
-                        continue;
-                    }
-                    visited.add(nextWord);
-                    queue.offer(nextWord);
-                }
-            }
-        }
-        return 0;
-    }
-    
-    public static ArrayList<String> getNextWords(String cur, Set<String> wordList) {
-        ArrayList<String> result = new ArrayList<>();
-        for (int i = 0; i < cur.length(); i++) {
-            for (char c = 'a'; c <= 'z'; c++) {
-                if (c == cur.charAt(i)) continue;
-                String afterRp = replace(cur, i, c);
-                if (wordList.contains(afterRp)) {
-                    result.add(afterRp);
-                }
-            }
-        }
-        return result;
-    }
-    
-    public static String replace(String word, int i, char c) {
-        char[] temp = word.toCharArray();
-        temp[i] = c;
-        return new String(temp);
+public class Word_Ladder { // time complexity: O(n * 26*l), l is the length of word, n is the size of wordList 
+	// space complexity: O(n)
+	public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+		Set<String> dict = new HashSet<>();
+	    for (String word : wordList) dict.add(word);
+	    
+	    if (!dict.contains(endWord)) return 0;
+	    
+	    Queue<String> q = new ArrayDeque<>(); // ArrayDeque is faster than stack when used as a stack, and faster
+	    // than a queue using a linkedList
+	    q.offer(beginWord);
+	    
+	    int l = beginWord.length();
+	    int steps = 0;
+	    
+	    while (!q.isEmpty()) {
+	      ++steps;
+	      for (int s = q.size(); s > 0; --s) {
+	        String w = q.poll();        
+	        char[] chs = w.toCharArray();
+	        for (int i = 0; i < l; ++i) {
+	          char ch = chs[i];
+	          for (char c = 'a'; c <= 'z'; ++c) {
+	            if (c == ch) continue;
+	            chs[i] = c;
+	            String t = new String(chs);         
+	            if (t.equals(endWord)) return steps + 1;            
+	            if (!dict.contains(t)) continue;            
+	            dict.remove(t);            
+	            q.offer(t);
+	          }
+	          chs[i] = ch;
+	        }
+	      }
+	    }
+	    return 0;
     }
 	
 	public static void main(String[] args) {
 		Word_Ladder wl = new Word_Ladder();
 		String beginWord = "hit", endWord = "cog";
-		HashSet<String> wordList = new HashSet<>();
+		List<String> wordList = new ArrayList<>();
 		wordList.add("hot");
 		wordList.add("dot");
 		wordList.add("dog");
 		wordList.add("lot");
 		wordList.add("log");
+		//wordList.add("cog");
 		System.out.print(wl.ladderLength(beginWord, endWord, wordList));
-		
-
 	}
 
 }
