@@ -30,7 +30,7 @@ package leetcodeAbove500;
 	M[i][i] = 1 for all students.
 	If M[i][j] = 1, then M[j][i] = 1.
  */
-public class FriendCirclesDFS {
+public class FriendCirclesDFS { // faster than BFS solution
 	public static int findCircleNum(int[][] M) {
         if (M == null || M.length == 0) return 0;
         
