@@ -39,7 +39,7 @@ public class ValidSudoku {
         //check each 3*3 matrix
         for (int block = 0; block < 9; block++) {
         	boolean[] m = new boolean[9];
-        	for (int i = block / 3 * 3; i < block / 3 * 3 + 3; i++) {
+        	for (int i = block / 3 * 3; i < block / 3 * 3 + 3; i++) { // 这个地方乘除都有讲究
         		for (int j = block % 3 * 3; j < block % 3 * 3 + 3; j++) {
         			if (board[i][j] != '.') {
         				if (m[(int) (board[i][j] - '1')]) {
@@ -53,4 +53,9 @@ public class ValidSudoku {
  
         return true;
     }
+	/*
+	 * 解题思路：在判断小方格是否valid时，k编号为0 ～ 8
+	 * 要得到小方格中每一个index，则用k / 3 * 3 开始，纵坐标为 k % 3 * 3 开始
+	 * 这个真的tricky
+	 */
 }
