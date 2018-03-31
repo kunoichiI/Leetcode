@@ -57,5 +57,6 @@ public class ValidSudoku {
 	 * 解题思路：在判断小方格是否valid时，k编号为0 ～ 8
 	 * 要得到小方格中每一个index，则用k / 3 * 3 开始，纵坐标为 k % 3 * 3 开始
 	 * 这个真的tricky
+	 * 也可以用一个global hashset排除重复，每次check完后clear hashset，然后check下一轮
 	 */
 }
