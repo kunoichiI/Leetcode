@@ -42,14 +42,14 @@ public class LRUCache {
 	            map.get(key).val = value;
 	            return;
 	        }
-	        if (map.size() == capacity) { // delete node after head
-	            map.remove(head.next.key);
-	            head.next = head.next.next;
-	            head.next.prev = head;
-	        }
-	        DoubleLinkedListNode node = new DoubleLinkedListNode(key, value);
-	        map.put(key, node);
-	        moveToTail(node);
+        if (map.size() == capacity) { // delete node after head
+            map.remove(head.next.key);
+            head.next = head.next.next;
+            head.next.prev = head;
+        }
+        DoubleLinkedListNode node = new DoubleLinkedListNode(key, value);
+        map.put(key, node);
+        moveToTail(node);
     }
     
     /**
