@@ -32,5 +32,6 @@ public class ShuffleArray {
 	 * 解题思路：用random instance随机生成0 ～ i之间的index，然后与现有i index进行swap，
 	 * 这样每一次生成的新数列，概率都是相等的。
 	 * GeeksforGeeks: https://www.geeksforgeeks.org/?p=25111
+	 * 可以从前往后，也可以从后往前！
 	 */
 }
