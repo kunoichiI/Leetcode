@@ -38,22 +38,3 @@ public class ValidateBST {
 	        return isValid(node.left, min, node.val) && isValid(node.right, node.val, max);
 	    }
 }
-
-// Method 2: In-order Traversal and to see if values are in ascending order
-//public class Solution {
-//    TreeNode prev = null;
-//    public boolean isValidBST(TreeNode root) {
-//        if (root != null) {
-//            if (!isValidBST(root.left)) {
-//                return false;
-//            }
-//            if (prev!= null && prev.val >= root.val) {
-//                return false;
-//            }
-//            prev = root;
-//            return isValidBST(root.right);
-//        }
-//        return true;
-//        
-//    }
-//}
