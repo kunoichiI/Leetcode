@@ -63,7 +63,7 @@ public class DeepCloneLinkedList {
 		System.out.println(newhead.next.next.random.val); // 5
 		System.out.println();
 		while (newhead!= null) {
-			System.out.println(newhead.val + " ");
+			System.out.print(newhead.val + " ");
 			newhead = newhead.next;
 		} // 1 -> 2 -> 3 -> 4 -> 5
 		
