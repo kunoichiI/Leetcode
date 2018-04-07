@@ -20,6 +20,7 @@ public class LetterCombinationsOfPhoneNumber {
         
         // initialize map
         String[] map = initializeMap();
+        res.add("");
         for (char c : digits.toCharArray()) {
             List<String> tmp1 = getList(c, map);
             System.out.println("tmp1 is: ");
@@ -27,20 +28,17 @@ public class LetterCombinationsOfPhoneNumber {
             System.out.println();
             List<String> tmp2 = new ArrayList<>();
             
-            if (res.isEmpty()) {
-            		res.addAll(tmp1);
-            }
-            else {
-            		for (int i = 0; i < res.size(); i++) {
-            			StringBuilder sb = new StringBuilder(res.get(i));
-            			for (int j = 0; j < tmp1.size(); j++) {
-            				sb.append(tmp1.get(j));
-            				tmp2.add(sb.toString());
-            				sb.deleteCharAt(sb.length() - 1);
-            			}
-            		}
-            		res = tmp2;
-            }
+            
+        		for (int i = 0; i < res.size(); i++) {
+        			StringBuilder sb = new StringBuilder(res.get(i));
+        			for (int j = 0; j < tmp1.size(); j++) {
+        				sb.append(tmp1.get(j));
+        				tmp2.add(sb.toString());
+        				sb.deleteCharAt(sb.length() - 1);
+        			}
+        		}
+        		res = tmp2;
+            
             
             System.out.println("tmp2 is: ");
             tmp2.forEach(s -> System.out.print(s + " "));
