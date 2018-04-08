@@ -16,7 +16,6 @@ package leetcodeAbove100;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
@@ -25,7 +24,7 @@ public class Word_Ladder { // time complexity: O(n * 26*l), l is the length of w
 	// space complexity: O(n)
 	public int ladderLength(String beginWord, String endWord, List<String> wordList) {
 		Set<String> dict = new HashSet<>();
-	    for (String word : wordList) dict.add(word);
+	    dict.addAll(wordList);
 	    
 	    if (!dict.contains(endWord)) return 0;
 	    
@@ -68,7 +67,7 @@ public class Word_Ladder { // time complexity: O(n * 26*l), l is the length of w
 		wordList.add("dog");
 		wordList.add("lot");
 		wordList.add("log");
-		//wordList.add("cog");
+		wordList.add("cog");
 		System.out.print(wl.ladderLength(beginWord, endWord, wordList));
 	}
 
