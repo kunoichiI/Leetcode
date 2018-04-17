@@ -19,8 +19,8 @@ public class LetterCombinationsOfPhoneNumber {
         if (digits == null || digits.length() == 0) return res;
         
         // initialize map
-        String[] map = initializeMap();
-        res.add("");
+        String[] map = new String[]{ "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+        res.add(""); // to make length 0 have element "", to iterate later
         for (char c : digits.toCharArray()) {
             List<String> tmp1 = getList(c, map);
             System.out.println("tmp1 is: ");
@@ -55,20 +55,6 @@ public class LetterCombinationsOfPhoneNumber {
         return ans;
     }
     
-    public static String[] initializeMap() {
-        String[] arr = new String[10];
-        arr[0] = "";
-        arr[1] = "";
-        arr[2] = "abc";
-        arr[3] = "def";
-        arr[4] = "ghi";
-        arr[5] = "jkl";
-        arr[6] = "mno";
-        arr[7] = "pqrs";
-        arr[8] = "tuv";
-        arr[9] = "wxyz";
-        return arr;
-    }
 	public static void main(String[] args) {
 		List<String> l = letterCombinations("34");
 		l.forEach(s -> System.out.print(s + " "));
