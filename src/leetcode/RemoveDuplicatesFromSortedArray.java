@@ -9,28 +9,27 @@ package leetcode;
 //
 //Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.
 //It doesn't matter what you leave beyond the new length.
-public class RemoveDuplicatesFromSortedArray {
+public class RemoveDuplicatesFromSortedArray { // Time: O(n), space :O(1)
 	public static int removeDuplicates(int[] nums) {
-        if (nums == null)
-            return 0;
-        if (nums.length < 2)
-            return nums.length;
+		if (nums == null) return 0;
+        if (nums.length < 2) return nums.length;
         
-        int i = 0, j = 1;
-        while (j < nums.length) {
-            if (nums[i] == nums[j]) {
-                j++;
-            } else {
-                i++;
-                nums[i] = nums[j];
-                j++;
+        int write = 0, read = 1;
+        while (read < nums.length) {
+            if (nums[write] == nums[read])
+                read++;
+            else {
+                write++;
+                nums[write] = nums[read];
+                read++;
             }
         }
-        return i + 1;   
+        return write + 1;  
     }
 	
 	public static void main(String[] args) {
-		
+		System.out.println(removeDuplicates(new int[]{1,1,2})); // 2
+		System.out.println(removeDuplicates(new int[]{0,0,1,1,1,2,2,3,3,4})); // 5
 	}
 
 }
