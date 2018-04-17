@@ -2,7 +2,9 @@ package leetcode;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+ * 2 ms Leetcode AC solution! Build parentheses from scratch.
+ */
 public class GenerateParenthesisRecursion {
 	public static List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
