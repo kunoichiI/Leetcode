@@ -56,4 +56,7 @@ public class PopulatingNextRightPointersInEachNodeConstantSpace {
             }
         }
     }
+	/*
+	 * 解题思路： 记录当前node和下一层的第一个node，然后开始在每一行进行next assign
+	 */
 }
