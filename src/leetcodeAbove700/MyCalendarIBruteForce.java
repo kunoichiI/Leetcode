@@ -11,23 +11,15 @@ public class MyCalendarIBruteForce {
     }
     
     public boolean book(int start, int end) {
-        if (start == end) return false;
-        this.list.add(new int[]{start, end});
-        Collections.sort(this.list, (int[] i1, int[] i2) -> i1[0] - i2[0]);
-       
-        for (int i = 1; i < list.size(); i++) {
-            if (list.get(i)[0] < list.get(i - 1)[1]) {
-                if (list.get(i)[0] == start)
-                    list.remove(i);
-                else
-                    list.remove(i - 1);
-                return false;
-            }     
+        for (int[] pair : this.list) {
+            if (Math.max(pair[0], start) < Math.min(pair[1], end)) return false;
         }
+        this.list.add(new int[]{start, end});
         return true;
     }
     /*
-     * 非常直白粗暴的解法，把新的interval加到list后，sort list，
-     * 然后根据哪个值等于新加的start， remove 并返回false
+     * 非常直白粗暴的解法，把新的interval加到list后，
+     * 然后比较开始时间的最大值和结束时间的最小值，如果前者小于后者，则一定有overlapping
+     * 比如 【3，9）， 【6， 8）， Math.max（3，6）小于Math.min（9， 8）
      */
 }
