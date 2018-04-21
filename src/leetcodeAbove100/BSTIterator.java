@@ -11,7 +11,7 @@ import java.util.*;
 
 import leetcode.TreeNode;
 
-public class BSTIterator {
+public class BSTIterator { // 7ms AC, time complexity: o(h), but can achieve average o(1)..
 	Stack<TreeNode> stack;
 	public BSTIterator(TreeNode root) {
         stack = new Stack<TreeNode>();
