@@ -65,7 +65,6 @@ public class Matrix01BFS {
         return dist;
     }
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 	/*
