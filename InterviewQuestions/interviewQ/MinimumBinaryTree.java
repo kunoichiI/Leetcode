@@ -1,7 +1,5 @@
 package interviewQ;
 
-import leetcode.TreeNode;
-
 // FB interview q, 给一个代表BT inorder Traverse array， 要求返回一个minheap tree（LC654相似解法。）
 public class MinimumBinaryTree {
 	public static TreeNode constructMinimumBinaryTree(int[] nums) {

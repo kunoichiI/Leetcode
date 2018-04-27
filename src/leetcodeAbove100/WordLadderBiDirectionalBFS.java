@@ -7,7 +7,7 @@ import java.util.Set;
 public class WordLadderBiDirectionalBFS { // This is much faster than general BFS
 	public int ladderLength(String beginWord, String endWord, List<String> wordList) {
 		Set<String> dict = new HashSet<>();
-	    for (String word : wordList) dict.add(word);
+	    dict.addAll(wordList);
 	    
 	    if (!dict.contains(endWord)) return 0;
 	    

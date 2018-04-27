@@ -7,10 +7,13 @@ import java.util.Set;
 
 //291. Word Pattern II
 //Given a pattern and a string str, find if str follows the same pattern.
+//Here follow means a full match, such that there is a bijection 
+// between a letter in pattern and a non-empty substring in str.
 //
-//Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty substring in str.
-//
-//Examples: pattern = "abab", str = "redblueredblue" should return true. pattern = "aaaa", str = "asdasdasdasd" should return true. pattern = "aabb", str = "xyzabcxzyabc" should return false. Notes: You may assume both pattern and str contains only lowercase letters.
+//Examples: pattern = "abab", str = "redblueredblue" should return true. 
+//pattern = "aaaa", str = "asdasdasdasd" should return true. 
+//pattern = "aabb", str = "xyzabcxzyabc" should return false. 
+//Notes: You may assume both pattern and str contains only lowercase letters.
 
 public class Word_Pattern_II {
 	Map<Character, String> map;

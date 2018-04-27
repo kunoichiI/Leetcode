@@ -1,8 +1,7 @@
 package leetcodeAbove100;
 
 import java.util.HashMap;
-
-import interviewQ.CustomNode;
+import gfg.CustomNode;
 
 public class CopyListWithRandomPointerHashMap {
 	public CustomNode copyRandomList(CustomNode head) {

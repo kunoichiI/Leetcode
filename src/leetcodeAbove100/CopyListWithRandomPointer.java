@@ -1,6 +1,6 @@
 package leetcodeAbove100;
 
-import interviewQ.CustomNode;
+import gfg.CustomNode;
 
 /*
  * 138. Copy List with Random Pointer

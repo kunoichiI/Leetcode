@@ -26,7 +26,7 @@ import java.util.*;
 //         / \
 //         \_/
 
-public class CloneGraph {
+public class CloneGraph { // BFS Solution, 7 ms, slower than DFS but faster than DFS with stack
 	public static UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
 		if (node == null) return null;
 		Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
@@ -37,22 +37,19 @@ public class CloneGraph {
 		q.add(node);
 		
 		while (!q.isEmpty()) {
-			while (!q.isEmpty()) {
-	            UndirectedGraphNode curr = q.poll(); // cur -> copy in map
-	            List<UndirectedGraphNode> currNeighbors = curr.neighbors; 
-	 
-	            for(UndirectedGraphNode aNeighbor: currNeighbors){ // copy neighbors to copy node
-	                if(!map.containsKey(aNeighbor)){
-	                    UndirectedGraphNode copy = new UndirectedGraphNode(aNeighbor.label);
-	                    map.put(aNeighbor,copy);
-	                    map.get(curr).neighbors.add(copy);
-	                    q.add(aNeighbor);
-	                }else{
-	                    map.get(curr).neighbors.add(map.get(aNeighbor));
-	                }
-	            }
-	 
-	        }
+            UndirectedGraphNode curr = q.poll(); // cur -> copy in map
+            List<UndirectedGraphNode> currNeighbors = curr.neighbors; 
+ 
+            for(UndirectedGraphNode aNeighbor: currNeighbors){ // copy neighbors to copy node
+                if(!map.containsKey(aNeighbor)){
+                    UndirectedGraphNode copy = new UndirectedGraphNode(aNeighbor.label);
+                    map.put(aNeighbor,copy);
+                    map.get(curr).neighbors.add(copy);
+                    q.add(aNeighbor);
+                }else{
+                    map.get(curr).neighbors.add(map.get(aNeighbor));
+                }
+            }
 		}
 		return start;
 	}

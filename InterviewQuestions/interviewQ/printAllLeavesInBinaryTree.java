@@ -1,7 +1,5 @@
 package interviewQ;
 
-import leetcode.TreeNode;
-
 public class printAllLeavesInBinaryTree {
 	public static void printLeaves(TreeNode root) {
 		if (root == null)

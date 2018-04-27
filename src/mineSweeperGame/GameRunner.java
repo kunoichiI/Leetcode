@@ -17,9 +17,32 @@ public class GameRunner {
 				System.out.println("Set number of mines: ");
 				int num = sc.nextInt();
 				System.out.println("w is: " + w + ", h is: " + h + ", there are mines: " + num);
-				Game g = new Game(w, h);
-				System.out.println("g is: " + g);
-				g.printGame();
+				Game g = new Game(w, h, num);
+				
+				while(true) {
+					if (g.getDone() && g.getWin()) { // if the player wins
+						System.out.println("You win!!");
+						g.onEnd();
+						break;
+					}
+					else if (g.getDone()) { // if player loses
+						g.onEnd();
+						break;
+					}
+					else if (!g.getDone()) { // game playing
+						int x = -1;
+						int y = -1;
+						System.out.println("Enter an x coordinate: ");
+						x = sc.nextInt();
+						System.out.println("Enter an y coordinate: ");
+						y = sc.nextInt();
+						
+						g.turn(x, y);
+						g.isVictory();
+						g.detect();
+						g.onEnd();
+					}
+				}
 			}
 			else {
 				System.out.println("Game is not started!");

@@ -2,7 +2,8 @@ package leetcodeAbove100;
 
 import java.util.*;
 //126. Word Ladder II  
-//Given two words (beginWord and endWord), and a dictionary's word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:
+//Given two words (beginWord and endWord), and a dictionary's word list, 
+//find all shortest transformation sequence(s) from beginWord to endWord, such that:
 //
 //Only one letter can be changed at a time
 //Each intermediate word must exist in the word list
@@ -19,10 +20,7 @@ import java.util.*;
 //  ]
 
 public class Word_Ladder_II {
-	public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
-        // Start typing your Java solution below
-        // DO NOT write main() function              
-        
+	public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {            
         HashMap<String, HashSet<String>> neighbours = new HashMap<String, HashSet<String>>();
         
         wordList.add(beginWord);

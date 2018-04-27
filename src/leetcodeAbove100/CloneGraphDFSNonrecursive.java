@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-// slowest speed... not good using DFS and stack.
+// slowest speed... not good using DFS and stack. 10 ms, 
 public class CloneGraphDFSNonrecursive {
 	public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
         if (node == null) return null;
