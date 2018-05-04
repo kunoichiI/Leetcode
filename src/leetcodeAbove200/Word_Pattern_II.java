@@ -16,45 +16,45 @@ import java.util.Set;
 //Notes: You may assume both pattern and str contains only lowercase letters.
 
 public class Word_Pattern_II {
-	Map<Character, String> map;
-	Set<String> set;
-	boolean res;
-	
-	public boolean wordPatternMatch(String pattern, String str) {
-		map = new HashMap<Character, String>();  // Store pattern character and its mapping string
-		set = new HashSet<String>();  // Store strings which are in bijection
-		res = false;
-		helper(pattern, str, 0, 0);
-		return res;
+	/*
+	 * time complexity: The helper function get called at most O(2 ^ (lenOfPattern)
+	 * in each node, the helper function runs O(lenOfStr) check
+	 * so the total time is O(lenOfStr * 2 ^ (lenOfPattern))
+	 * 
+	 * space complexity is: O(lenOfStr * 2 ^ (lenOfPattern))
+	 */
+	public static boolean wordPatternMatch(String pattern, String str) {
+		if (pattern == null && str == null) return true;
+		if (pattern == null || str == null) return false;
+		HashMap<Character, String> map = new HashMap<Character, String>();  // Store pattern character and its mapping string
+		HashSet<String> set = new HashSet<String>();  // Store strings which are in bijection
+		return helper(pattern, str, 0, 0, map, set);
 	}
 	
-	public void helper(String pattern, String str, int i, int j) {
-		if (i == pattern.length() && j == str.length()) {
-			res = true;
-			return;
-		}
-		if (i == pattern.length() || j == str.length()) return;
+	public static boolean helper(String pattern, String str, int i, int j, HashMap<Character, String> map, HashSet<String> set) {
+		if (i == pattern.length() && j == str.length()) return true;
+		if (i >= pattern.length() || j >= str.length()) return false;
 		
 		// try every possible mapping relation between pattern and str
 		char c = pattern.charAt(i);
 		for (int cut = j + 1; cut <= str.length(); cut++) {
 			String substr = str.substring(j, cut);
-			if (!set.contains(substr) && !map.containsKey(c)) {
+			if (!map.containsKey(c) && !set.contains(substr)) {
 				map.put(c, substr);
 				set.add(substr);
-				helper(pattern, str, i+1, cut);
-				map.remove(c);
+				if (helper(pattern, str, i+1, cut, map, set)) 
+					return true;
+				map.remove(c); // backtracking to get to previous recursion level
 				set.remove(substr);
-			}else if (map.containsKey(c) && set.contains(substr)) {
-				helper(pattern, str, i+1, cut);
+			}else if (map.containsKey(c) && map.get(c).equals(substr)) {
+				if (helper(pattern, str, i+1, cut, map, set)) return true;
 			}
 		}
+		return false;
 	}
 	
 	public static void main(String[] args) {
-		String pattern = "aba";
-		String str = "aaaa";
-		Word_Pattern_II wpi = new Word_Pattern_II();
-		System.out.print(wpi.wordPatternMatch(pattern, str));
+		System.out.println(wordPatternMatch("abab", "redblueredblue")); // true
+		System.out.println(wordPatternMatch("aaaa", "xyzxzyxyzxyz")); // false
 	}
 }

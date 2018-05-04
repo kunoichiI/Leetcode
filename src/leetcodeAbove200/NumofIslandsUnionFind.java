@@ -1,6 +1,7 @@
 package leetcodeAbove200;
 
 public class NumofIslandsUnionFind {
+	/* time: O(MNlog(MN) space: O(MN)*/ 
 	 public static int numIslands(char[][] grid) {
 	        if (grid == null || grid.length == 0) return 0;
 	        
