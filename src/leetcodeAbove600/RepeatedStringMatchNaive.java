@@ -12,9 +12,19 @@ package leetcodeAbove600;
 	The length of A and B will be between 1 and 10000.
  */
 public class RepeatedStringMatchNaive {
-
+	public static int repeatedStringMatch(String A, String B) {
+        int res = 1;
+        StringBuilder sb = new StringBuilder(A);
+        for (; sb.length() < B.length(); res++) {
+            sb.append(A);
+        }
+        if (sb.indexOf(B) >= 0) return res;
+        if (sb.append(A).indexOf(B) >= 0) return res + 1;
+        else return -1;
+    }
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
