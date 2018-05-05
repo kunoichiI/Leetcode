@@ -50,8 +50,6 @@ public class WordSearch { // O(MN) time, O(MN) space
         return false;
     }
 	public static void main(String[] args) {
-		String word2 = "SEE";
-		String word3 = "ABCB";
 		char[][] board = {
 				{'A','B','C','E'},
 				{'S','F','C','S'},
