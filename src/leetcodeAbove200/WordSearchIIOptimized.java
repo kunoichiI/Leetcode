@@ -5,7 +5,7 @@ import java.util.List;
 
 public class WordSearchIIOptimized {
 	/*
-	 * Leetcode AC 25ms, time complexity: O(m * n), trie insertion has been put in findWords method
+	 * Leetcode AC 25ms, time complexity: O(m * n), dfs works in O(1) time,
 	 * so time improved a lot!
 	 * space complexity: O(26 * keysOfString + NumOfWords) = O(N) linear space
 	 */

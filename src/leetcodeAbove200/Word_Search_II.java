@@ -20,8 +20,8 @@ import java.util.*;
 public class Word_Search_II {
 	/*
 	 * Leetcode AC 66 ms, among top 55% java submissions
-	 * time complexity: findWords method takes O(m * n), the trie insert & search method both use O(lenOfString)
-	 * so the total complexity would be O(m * n * lenOfString)
+	 * time complexity: findWords method takes O(m * n), dfs method calls trie.search() method which takes O(keyOfString)
+	 * so the total complexity would be O(m * n * keyOfString)
 	 */
 	public List<String> findWords(char[][] board, String[] words) {
 		Set<String> result = new HashSet<String>();
