@@ -5,6 +5,8 @@ import java.util.List;
 
 // question same as Permutations
 public class PermutationsDFS {  /* 这个方法也不错，但是貌似时间并没有优化。。*/
+	/* time complexity: O(n * n!) space: O(n * n!) 
+	 * Leetcode AC 6ms among top 15% I guess because array operations are faster than dynamic arrays ones*/
 	public static List<List<Integer>> permute(int[] nums) {
 		List<List<Integer>> res = new ArrayList<>();
 		boolean[] used = new boolean[nums.length];
@@ -37,10 +39,10 @@ public class PermutationsDFS {  /* 这个方法也不错，但是貌似时间并
 		int[] arr1 = { 1, 2, 3, 4};
 		int[] arr2 = {5, 100, 45 };
 		List<List<Integer>> res1 = permute(arr1);
-		//res1.stream().forEach(System.out::println);
+		res1.stream().forEach(System.out::println);
 		System.out.println();
 		List<List<Integer>> res2 = permute(arr2);
-		//res2.stream().forEach(System.out::println);
+		res2.stream().forEach(System.out::println);
 	}
 
 }
