@@ -37,7 +37,6 @@ public class Graph {
 	 * exclusively for alien dictionary's topological sort
 	 */
 	public void topologialSort() {
-		LinkedList<Character> list = new LinkedList<>();
 		boolean[] visited = new boolean[V];
 		Stack<Integer> s = new Stack<>();
 		
