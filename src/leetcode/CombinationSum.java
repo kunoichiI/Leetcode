@@ -18,6 +18,9 @@ import java.util.*;
 //]
 
 public class CombinationSum {
+	/* time complexity: because target is affecting the time of getting all answers,
+	 * but in each array, we can have no more than 2^n answers, generally it takes n in helper method to get an anser
+	 * therefore time complexity is approxiamately O(n * 2^n) */
 	public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> item = new ArrayList<>();
@@ -39,13 +42,12 @@ public class CombinationSum {
         }
         
         for (int i = start; i < candidates.length; i++) {
-            if (i > 0 && candidates[i] == candidates[i-1]) {
-                continue; // skip duplicate elements
-            }
-            item.add(candidates[i]);
-            int newtarget = target - candidates[i];
-            helper(candidates, newtarget, res, item, i); // starting at i because same element can be reused unlimited times
-            item.remove(item.size()-1);
+        		if (candidates[i] <= target) { // this if check will greatly improve time!
+        			item.add(candidates[i]);
+                int newtarget = target - candidates[i];
+                helper(candidates, newtarget, res, item, i); // starting at i because same element can be reused unlimited times
+                item.remove(item.size()-1);
+        		}
         }
     }
     
