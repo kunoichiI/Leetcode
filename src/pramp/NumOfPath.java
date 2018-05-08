@@ -1,5 +1,7 @@
 package pramp;
 
+import java.util.Arrays;
+
 //You’re testing a new driverless car that is located at the Southwest (bottom-left) corner of an n×n grid. 
 //The car is supposed to get to the opposite, Northeast (top-right), 
 //corner of the grid. Given n, the size of the grid’s axes, write a function numOfPathsToDest 
@@ -20,21 +22,25 @@ package pramp;
 public class NumOfPath { // 01/12/2018 pramp mock interview asked this question
 	public static int numOfPathsToDest(int n) {
 		int[][] memo = new int [n][n];
-		memo[0][0] = 1;
+		
 		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				memo[i][j] += count(i, j-1, memo) + count(i-1, j, memo) ;
+			memo[i][0] = 1;
+		}
+	
+		for (int i = 1; i < n; i++) {
+			for (int j = 1; j < n; j++) {
+				if (i < j) 
+					memo[i][j] = 0;
+				else
+					memo[i][j] = memo[i - 1][j] + memo[i][j - 1];
 			}
 		}
+		System.out.println("memo looks like: ");
+		System.out.println(Arrays.deepToString(memo));
 		return memo[n-1][n-1];
 	}
 	
-	public static int count(int i, int j, int[][] memo) {
-		if (i < 0 || j < 0 || i < j) {
-			return  0;
-		} 
-		return memo[i][j];
-	}
+	
 	
 	public static void main(String[] args) {
 		System.out.println(numOfPathsToDest(1)); // 1
