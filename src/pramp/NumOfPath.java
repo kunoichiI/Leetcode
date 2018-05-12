@@ -21,6 +21,7 @@ import java.util.Arrays;
 //Explain the correctness of your function, and analyze its time and space complexities.
 public class NumOfPath { // 01/12/2018 pramp mock interview asked this question
 	public static int numOfPathsToDest(int n) {
+		/* bottom up dp solution*/
 		int[][] memo = new int [n][n];
 		
 		for (int i = 0; i < n; i++) {

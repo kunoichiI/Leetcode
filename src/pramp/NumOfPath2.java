@@ -1,6 +1,7 @@
 package pramp;
 // An iterative solution to solve the numOfPath problem
 public class NumOfPath2 {
+	/* This solution efficiently improve space */
 	public static int NumOfPathsToDest(int n) {
 		if (n == 1)
 			return 1;
