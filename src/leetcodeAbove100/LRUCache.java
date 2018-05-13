@@ -8,48 +8,54 @@ import java.util.*;
 //set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
 
 public class LRUCache {
-	private HashMap<Integer, DoubleLinkedListNode> map = new HashMap<>();
-    private DoubleLinkedListNode head = new DoubleLinkedListNode(-1, -1);
-    private DoubleLinkedListNode tail = new DoubleLinkedListNode(-1, -1);
-    private int capacity;
-    
+	/*
+	 * LC AC among top 30%
+	 */
+	final int CAPACITY;
+    Map<Integer, Node> map;
+    Node head = new Node(-1, -1);
+    Node tail = new Node(-1, -1);
     public LRUCache(int capacity) {
-        this.capacity = capacity;
+        this.CAPACITY = capacity;
+        map = new HashMap<>(capacity);
         head.next = tail;
         tail.prev = head;
     }
     
     public int get(int key) {
-        if (!map.containsKey(key))
-        		return -1;
-        DoubleLinkedListNode latest = map.get(key);
+        if (!map.containsKey(key)) return -1;
+        Node latest = map.get(key);
         latest.prev.next = latest.next;
-        latest.next.prev = latest.prev;
+        latest.next.prev = latest.prev; // get the node out of doubly linked list
         
-        moveToTail(latest);
-        return map.get(key).val;
+        moveToHead(latest);
+        return latest.val;
     }
     
-    private void moveToTail(DoubleLinkedListNode node) {
-       node.next = tail;
-       tail.prev.next = node;
-       node.prev = tail.prev;
-       tail.prev = node;
+    private void moveToHead(Node node) {
+        // move the recent used node always to after head, node becomes the new firstNode
+        Node firstNode = head.next;
+        head.next = node;
+        node.next = firstNode;
+        firstNode.prev = node;
+        node.prev = head;
     }
     
     public void put(int key, int value) {
-	    	if (get(key) != -1) {
-	            map.get(key).val = value;
-	            return;
-	        }
-        if (map.size() == capacity) { // delete node after head
-            map.remove(head.next.key);
-            head.next = head.next.next;
-            head.next.prev = head;
+        if (get(key) != -1) {
+            Node node = map.get(key);
+            node.val = value;
+            return;
         }
-        DoubleLinkedListNode node = new DoubleLinkedListNode(key, value);
-        map.put(key, node);
-        moveToTail(node);
+        if (map.size() == CAPACITY) {
+            // evict the least recently used node, which is tail.prev
+            map.remove(tail.prev.key);
+            tail.prev = tail.prev.prev;
+            tail.prev.next = tail;
+        }
+        Node newNode = new Node(key, value);
+        map.put(key, newNode);
+        moveToHead(newNode);
     }
     
     /**
@@ -84,14 +90,12 @@ public class LRUCache {
 	}
 }
 
-class DoubleLinkedListNode {
-    public int val;
-    public int key;
-    public DoubleLinkedListNode prev;
-    public DoubleLinkedListNode next;
-    
-    public DoubleLinkedListNode(int key, int value) {
-        this.val = value;
-        this.key = key;
-    }	
+class Node {
+    int key;
+    int val;
+    Node prev, next;
+    Node(int k, int v) {
+        this.key = k;
+        this.val = v;
+    }
 }
