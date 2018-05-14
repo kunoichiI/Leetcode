@@ -1,9 +1,11 @@
-package leetcode;
+package leetcodeAbove200;
 import java.util.Stack;
-//Inorder Successor in BST
+// 285 Inorder Successor in BST
 //Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
 //
 //Note: If the given node has no in-order successor in the tree, return null.
+
+import leetcode.TreeNode;
 
 public class InorderSuccessorInBST {
 	 public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
