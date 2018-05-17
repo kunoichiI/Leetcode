@@ -18,6 +18,7 @@ import leetcode.TreeNode;
 
 public class LCAofBT {
 	public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		// time: O(n) space: O(h)
 		if (p == null || q == null) return null;
         if (root == null || root == p || root == q) {
             return root;
