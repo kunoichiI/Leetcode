@@ -20,48 +20,32 @@ package leetcodeAbove200;
 
 public class GameOfLife {
 	public void gameOfLife(int[][] board) {
-	       if(board == null || board.length == 0 || board[0].length == 0) return;
-	        for(int i = 0; i < board.length; i++){
-	            for(int j = 0; j < board[0].length; j++){
-	                int nbNum = getNB(board, i, j);
-	                if(board[i][j] == 0){
-	                    if(nbNum == 3){
-	                        board[i][j] = 3;
-	                    }
-	                }
-	                else{
-	                    if(nbNum < 2){
-	                        board[i][j] = 2;
-	                    }
-	                    else if(nbNum > 3){
-	                        board[i][j] = 2;
-	                    }
-	                }
-	            }
-	        }
-	        for(int i = 0; i < board.length; i++){
-	            for(int j = 0; j < board[0].length; j++){
-	                board[i][j] = board[i][j] % 2;
-	            }
-	        }
-	        return;
-	    }
-	    public int getNB(int[][] board, int row, int col){
-	        int result = 0;
-	        int[] dx = {-1,0,1,-1,1,-1,0,1};
-	        int[] dy = {-1,-1,-1,0,0,1,1,1};
-	        for(int k = 0; k < 8; k++){
-	            int rowN = row + dx[k];
-	            int colN = col + dy[k];
-	            if(rowN < 0 || rowN >= board.length || colN < 0 || colN >= board[0].length){
-	                continue;
-	            }
-	            if(board[rowN][colN] > 0 && board[rowN][colN] < 3){
-	                result += 1;
-	            }
-	        }
-	        return result;
-	    }
+        int m = board.length, n = board[0].length;
+        
+       int dx[] = {-1, -1, -1, 0, 1, 1, 1, 0};
+        int dy[] = {-1, 0, 1, 1, 1, 0, -1, -1};
+        
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int cnt = 0;
+                for (int k = 0; k < 8; ++k) {
+                    int x = i + dx[k], y = j + dy[k];
+                    if (x >= 0 && x < m && y >= 0 && y < n && (board[x][y] == 1 || board[x][y] == 2)) {
+                        ++cnt;
+                    }
+                }
+                if (board[i][j] == 1 && (cnt < 2 || cnt > 3)) board[i][j] = 2;
+                else if (board[i][j] == 0 && cnt == 3) board[i][j] = 3;
+            }
+        }
+        
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                board[i][j] %= 2;
+            }
+        }
+    }
 }
 
 // Follow up solution goes here
