@@ -3,19 +3,18 @@ package leetcodeAbove200;
 import leetcode.ListNode;
 
 public class ReverseLinkedListIterative {
-	 public static ListNode reverseList(ListNode head) {
-	        ListNode prev = null;
-	        ListNode curr = head;
-	        ListNode next = null;
-	        
-	        while (curr != null) {
-	            next = curr.next; // get cur's next node and save it as next
-	            curr.next = prev; // current node point to prev node
-	            prev = curr;  // prev node becomes the current node
-	            curr = next; // current move to the next
-	        }
-	        return prev;
-	}
+	public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) return head;
+        
+        ListNode prev = null, cur = head;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
+        return prev;
+    }
 	 
 	public static void printList(ListNode head) {
 		while (head != null) {

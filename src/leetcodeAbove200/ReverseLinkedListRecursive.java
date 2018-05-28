@@ -4,13 +4,12 @@ import leetcode.ListNode;
 
 public class ReverseLinkedListRecursive { // o(N) time, O(N) space on stack, memory error on Leetcode
 	public static ListNode reverseList(ListNode head) {
-		if (head == null)
-			return null;
-		if (head.next == null)
+		if (head == null || head.next == null)
 			return head;
 		ListNode second = head.next;
 		ListNode reversed = reverseList(second);
 		second.next = head;
+		head.next = null;
 		return reversed;
 	}
 	
