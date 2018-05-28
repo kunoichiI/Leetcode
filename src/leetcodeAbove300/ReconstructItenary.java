@@ -36,7 +36,7 @@ public class ReconstructItenary {
             map.get(ticket[0]).offer(ticket[1]);
         }
         
-        // use bfs to get the next destination
+        // use dfs to get the next destination
         dfs("JFK");
         return res;   
     }
