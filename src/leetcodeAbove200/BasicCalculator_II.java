@@ -20,7 +20,7 @@ public class BasicCalculator_II {
         char sign = '+';
         for (int i = 0; i < s.length(); i++) {
             char cur = s.charAt(i);
-            if (Character.isDigit(cur)) {
+            if (cur >= '0' && cur <= '9') {
                 number = number * 10 + (int)(cur - '0');
             }
             
@@ -53,5 +53,7 @@ public class BasicCalculator_II {
 		BasicCalculator_II bc2 = new BasicCalculator_II();
 		int res = bc2.calculate(" 3+5 / 2 ");
 		System.out.println(res);
+		System.out.println(bc2.calculate("3+2*2")); // 7
+		System.out.println(bc2.calculate("42")); // 42
 	}
 }
