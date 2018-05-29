@@ -32,7 +32,7 @@ public class DiameterOfBinaryTree {
 			return 0;
 		int left = depth(root.left);
 		int right = depth(root.right);
-		max = Math.max(left + right, max);
+		max = Math.max(left + right, max); // calc depth & max at same time at each node
 		return Math.max(left, right) + 1;
 	}
 
