@@ -37,6 +37,7 @@ Input:     1         1
 Output: false
  */
 public class SameTree {
+	// O(n) time(because it reaches each node), O(h) call stack space(can be o(n) if its a skew tree)
 	public boolean isSameTree(TreeNode p, TreeNode q) {
 		if (p == null && q == null) return true;
 		else if (p == null || q == null) return false;
