@@ -5,6 +5,7 @@ package interviewQ;
 public class reverseCharacterOrderInStr {
 	public static void reverseString(char[] charArr) {
 		int wordStartIdx = -1;
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < charArr.length; i++) {
 			if (charArr[i] == ' ') { // ignore spaces
 				continue;
@@ -18,9 +19,14 @@ public class reverseCharacterOrderInStr {
 					charArr[a] = charArr[b];
 					charArr[b] = swap;
 				}
+				for (int a = wordStartIdx; a <= i; a++) {
+					sb.append(charArr[a]);
+				}
+				sb.append(' ');
 				wordStartIdx = -1; // reset wordStartIdx here after each reverse
 			}
 		}
+		System.out.println("sb is: " + sb.toString());
 	}
 		
 	public static void main(String[] args) {
